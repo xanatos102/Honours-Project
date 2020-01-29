@@ -1,0 +1,80 @@
+/*
+    Description: Custom colour scheme used for the website.
+    to be called after any bootstrap files
+    this will overite the standard bootstrap colours.
+
+    Author: Aaron Hay
+ */
+
+/* RebeccaSamuelsW01 font
+   Copyright (c) 2001 by Hans Samuelson. All rights reserved.
+*/
+@import url(//db.onlinewebfonts.com/c/5a81378704abafb480427b49f4d0e6a4?family=RebeccaSamuelsW01-Regular);
+
+@font-face {font-family: "RebeccaSamuelsW01-Regular";
+src: url("//db.onlinewebfonts.com/t/5a81378704abafb480427b49f4d0e6a4.eot");
+src: url("//db.onlinewebfonts.com/t/5a81378704abafb480427b49f4d0e6a4.eot?#iefix")
+format("embedded-opentype"), url("//db.onlinewebfonts.com/t/5a81378704abafb480427b49f4d0e6a4.woff2")
+format("woff2"), url("//db.onlinewebfonts.com/t/5a81378704abafb480427b49f4d0e6a4.woff")
+format("woff"), url("//db.onlinewebfonts.com/t/5a81378704abafb480427b49f4d0e6a4.ttf")
+format("truetype"), url("//db.onlinewebfonts.com/t/5a81378704abafb480427b49f4d0e6a4.svg#RebeccaSamuelsW01-Regular")
+format("svg"); }
+
+body
+{
+    font-family: "RebeccaSamuelsW01-Regular";
+    background-color: #e6e6e6;
+    font-size: 120% ;
+}
+
+.card
+{
+  width:100%;
+}
+
+.card-body, .card-title, .card-text, .card-header
+{
+  background-color: #ffffff;
+}
+
+hr
+{
+  background-color: #000000;
+}
+
+/* If the screen size is 601px wide or more, set the font-size of <div> to 80px */
+@media screen and (min-width: 601px) {
+  html { font-size: 1.07em; }
+}
+
+/* If the screen size is 600px wide or less, set the font-size of <div> to 30px */
+@media screen and (max-width: 600px) {
+  html { font-size: 1em; }
+  .display-1 { font-size: 2.5em; }
+  .lead { font-size: 1.5em; }
+  h2 { font-size: 2em; }
+}
+
+/* Style the button that is used to open and close the collapsible content */
+.collapsible {
+ color: #ffffff;
+ cursor: pointer;
+ padding: 1em;
+ width: 100%;
+ border: none;
+ text-align: left;
+ outline: none;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.collapsible:hover {
+ background-color: #ccc;
+}
+
+/* Style the collapsible content. Note: hidden by default */
+.content {
+ padding: 1em;
+ display: none;
+ overflow: hidden;
+ background-color: #2a2c33;
+}
