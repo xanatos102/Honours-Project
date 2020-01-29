@@ -182,4 +182,86 @@ function login(){
     }
   }
 }
+
+function createNewQuestion(){
+
+  require 'db-connection.php';
+
+  if (isset($_POST["submitQuestion"]))
+  {
+    $questionDescription = (filter_input(INPUT_POST, 'questionDescription', FILTER_SANITIZE_STRING));
+    $answerOne = (filter_input(INPUT_POST, 'answerOne', FILTER_SANITIZE_STRING));
+    $answerTwo = (filter_input(INPUT_POST, 'answerTwo', FILTER_SANITIZE_STRING));
+    $answerThree = (filter_input(INPUT_POST, 'answerThree', FILTER_SANITIZE_STRING));
+    $answerFour = (filter_input(INPUT_POST, 'answerFour', FILTER_SANITIZE_STRING));
+    $correctAnswer = (filter_input(INPUT_POST, 'correctAnswer', FILTER_SANITIZE_STRING));
+    $topic = (filter_input(INPUT_POST, 'topic', FILTER_SANITIZE_STRING));
+
+    // Error checking variables
+    $error = false;
+    $descriptionError;
+    $answerError;
+    $correctAnswerError;
+    $topicError;
+
+    if (!preg_match("/^[a-zA-Z ]*$/",$firstName) || !preg_match("/^[a-zA-Z ]*$/",$lastName)) // First & Surname must be Letters
+    {
+      $error = true;
+      $nameError = ":Your name can only contain letters";
+    }
+
+    if(!preg_match("/^[a-zA-Z0-9]*$/", $username))// Username must contain letters and numbers
+    {
+      $error = true;
+      $usernameError = ":Username can only contain letters and numbers";
+    }
+  }
+
+  if(!empty($password) && $password != $confirmPassword) // Passwords must match
+  {
+    $error = true;
+    $confirmPasswordError = ":Passwords do not match";
+  }
+
+  if(empty($password)) // Password is empty
+  {
+    $error = true;
+    $passwordError = ":Please enter a password";
+  }
+
+  if($error == true) // An error has occured
+  {
+    $errorString = $nameError.$usernameError.$passwordError.$confirmPasswordError;
+    header('Location: ../View/registration.php?error='.$errorString);
+  }
+  else // Continue
+  {
+    // Create SQL Template
+    $query = $pdo->prepare
+    ("
+    INSERT INTO admin (first_name, last_name, username, password)
+    VALUES( :firstName, :lastName, :username, :password)
+    ");
+
+    $success = $query->execute
+    ([
+      'firstName' => $firstName,
+      'lastName' => $lastName,
+      'username' => $username,
+      'password' => $password
+    ]);
+
+    $count = $query->rowCount();
+    if($count > 0)
+    {
+      echo "Insert Successful";
+      header('Location: ../View/registration.php?error=Success.');
+    }
+    else
+    {
+      echo "Insert Failed";
+      echo $query -> errorInfo()[2];
+    }
+  }
+}
 ?>
