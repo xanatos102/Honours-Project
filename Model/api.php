@@ -189,7 +189,7 @@ function createNewQuestion(){
 
   if (isset($_POST["submitQuestion"]))
   {
-    $questionDescription = (filter_input(INPUT_POST, 'questionDescription', FILTER_SANITIZE_STRING));
+    $description = (filter_input(INPUT_POST, 'description', FILTER_SANITIZE_STRING));
     $answerOne = (filter_input(INPUT_POST, 'answerOne', FILTER_SANITIZE_STRING));
     $answerTwo = (filter_input(INPUT_POST, 'answerTwo', FILTER_SANITIZE_STRING));
     $answerThree = (filter_input(INPUT_POST, 'answerThree', FILTER_SANITIZE_STRING));
@@ -204,58 +204,38 @@ function createNewQuestion(){
     $correctAnswerError;
     $topicError;
 
-    if (!preg_match("/^[a-zA-Z ]*$/",$firstName) || !preg_match("/^[a-zA-Z ]*$/",$lastName)) // First & Surname must be Letters
-    {
-      $error = true;
-      $nameError = ":Your name can only contain letters";
-    }
-
-    if(!preg_match("/^[a-zA-Z0-9]*$/", $username))// Username must contain letters and numbers
-    {
-      $error = true;
-      $usernameError = ":Username can only contain letters and numbers";
-    }
-  }
-
-  if(!empty($password) && $password != $confirmPassword) // Passwords must match
-  {
-    $error = true;
-    $confirmPasswordError = ":Passwords do not match";
-  }
-
-  if(empty($password)) // Password is empty
-  {
-    $error = true;
-    $passwordError = ":Please enter a password";
   }
 
   if($error == true) // An error has occured
   {
-    $errorString = $nameError.$usernameError.$passwordError.$confirmPasswordError;
-    header('Location: ../View/registration.php?error='.$errorString);
+    $errorString = $descriptionError.$answerError.$correctAnswerError.$topicError;
+    header('Location: ../View/question-form.php?error='.$errorString);
   }
   else // Continue
   {
     // Create SQL Template
     $query = $pdo->prepare
     ("
-    INSERT INTO admin (first_name, last_name, username, password)
-    VALUES( :firstName, :lastName, :username, :password)
+    INSERT INTO question (description, answer_one, answer_two, answer_three, answer_four, correct_answer, topic)
+    VALUES( :description, :answerOne, :answerTwo, :answerThree, :answerFour, :correctAnswer, :topic)
     ");
 
     $success = $query->execute
     ([
-      'firstName' => $firstName,
-      'lastName' => $lastName,
-      'username' => $username,
-      'password' => $password
+      'description' => $description,
+      'answerOne' => $answerOne,
+      'answerTwo' => $answerTwo,
+      'answerThree' => $answerThree,
+      'answerFour' => $answerFour,
+      'correctAnswer' => $correctAnswer,
+      'topic' => $topic
     ]);
 
     $count = $query->rowCount();
     if($count > 0)
     {
       echo "Insert Successful";
-      header('Location: ../View/registration.php?error=Success.');
+      header('Location: ../View/question-form.php?error=Success.');
     }
     else
     {

@@ -1,9 +1,14 @@
 <?php
 include 'session.php';
-include 'header.php';
 ?>
 <!DOCTYPE html>
 <html>
+<!-- <head> -->
+<?php
+    include 'header.php';
+?>
+<!-- </head> -->
+<title>Question Form</title>
 <body>
 
 <div class="container">
@@ -11,8 +16,8 @@ include 'header.php';
   <h1 class="text-center mt-4">Add Question</h1>
   <form class="form-group needs-validation" action="../Controller/attempt-create-question.php" method="POST" novalidate>
     <div class="form-group">
-      <label for="questionDescription">Question Description (Required)</label>
-      <textarea class="form-control" id="questionDescription" name="questionDescription" placeholder="Question Description" rows="3" required></textarea>
+      <label for="description">Question Description (Required)</label>
+      <textarea class="form-control" id="description" name="description" placeholder="Question Description" rows="3" required></textarea>
       <div class="invalid-feedback">
         You cannot Leave This field Empty.
       </div>
@@ -53,8 +58,8 @@ include 'header.php';
       </select>
     </div>
     <div class="form-group">
-      <label for="category">Category (Required)</label>
-      <input type="text" class="form-control" id="category" name="category" placeholder="Category (e.g. Malware, Phishing.)" required>
+      <label for="topic">Topic (Required)</label>
+      <input type="text" class="form-control" id="topic" name="topic" placeholder="Topic (e.g. Malware, Phishing.)" required>
       <div class="invalid-feedback">
         You cannot Leave This field Empty.
       </div>
@@ -62,7 +67,25 @@ include 'header.php';
     <button type="submit" id="submitQuestion" name="submitQuestion" class="btn btn-secondary">Submit</button>
   </form>
 
-</div>
+  <?php
+  //Error Reporting for the users
+  if(isset($_GET['error']))
+  {
+    $error = $_GET['error'];
+    $error = str_replace(":","</br>", $error);
+    echo "<h3 style='color:red;'>$error</h3>";
+  }
+  ?>
 
+</div>
+<!-- </footer> -->
+    <?php include 'footer.php'; ?>
+<!-- </footer> -->
+
+<!-- javascript -->
+<?php
+require '../Controller/bootstrap-script.php';
+require '../Controller/field-validation.js';
+?>
 </body>
 </html>
