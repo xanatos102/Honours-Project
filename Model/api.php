@@ -37,7 +37,7 @@ function retrieveQuestions(){
   // Connect to database
   require "db-connection.php";
   // SQL query to retrieve quiz data
-  $sql = "SELECT * FROM QuizData";
+  $sql = "SELECT * FROM question";
   // Create statement template
   $stmt = $pdo->prepare($sql);
   // Fetch results from prepared statement

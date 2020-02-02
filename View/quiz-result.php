@@ -21,7 +21,7 @@ $totalCorrect = 0;
     <?php
     // Necessary components from other php files
     include 'header.php';
-    include '../Controller/retrieveQuestions.php';
+    include '../Controller/retrieve-questions.php';
     ?>
 </head>
 <title>Malware Quiz</title>
