@@ -4,9 +4,37 @@
     Author: Aaron Hay
 */
 
-// Pull all quiz data from the quiz table
+// Retrieve all topic data from topic table.
+function retrieveAllTopics(){
+
+  require 'db-connection.php';
+
+  $sql = "SELECT * FROM topic";
+
+  $stmt = $pdo->prepare($sql);
+  $result = $stmt->fetch();
+  $success = $stmt->execute();
+
+  if($success && $stmt->rowCount() > 0)
+  {
+    //  convert to JSON
+    $rows = array();
+    while($r = $stmt->fetch())
+    {
+      $rows[] = $r;
+    }
+    return json_encode($rows);
+  }
+}
+
+// Display topic information by ID
+function displayTopicById(){
+
+}
+
+// Retrieve quiz data from the quiz table.
 function retrieveQuestions(){
-  // Connect to pi_quiz_db
+  // Connect to database
   require "db-connection.php";
   // SQL query to retrieve quiz data
   $sql = "SELECT * FROM QuizData";
@@ -29,7 +57,7 @@ function retrieveQuestions(){
   }
 }
 
-//Insert new Employee to database
+// Insert credentials for new admins.
 function registerAccount(){
 
   require 'db-connection.php';
@@ -141,6 +169,7 @@ function registerAccount(){
   }
 }
 
+// Allow admins to log in to admin only areas of the website.
 function login(){
 
   require 'db-connection.php';
@@ -183,6 +212,7 @@ function login(){
   }
 }
 
+// Insert new quiz questions and answers into quiz table.
 function createNewQuestion(){
 
   require 'db-connection.php';
@@ -243,5 +273,10 @@ function createNewQuestion(){
       echo $query -> errorInfo()[2];
     }
   }
+}
+
+// Insert new topic information into topic table.
+function createNewTopic(){
+
 }
 ?>

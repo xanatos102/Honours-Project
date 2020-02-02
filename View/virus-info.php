@@ -78,7 +78,7 @@
     <p>Text here.</p>
   </div>
   <script>
-  <?php include "../Controller/collapseButton.js";?>
+  <?php include "../Controller/collapse-button.js";?>
   </script>
   <?php include 'footer.php'; ?>
 </body>
