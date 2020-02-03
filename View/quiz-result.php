@@ -7,15 +7,24 @@
 
 <?php
 // Assign selected answers from previous page to new variables
-$answerOne = $_POST['answerOne'];
-$answerTwo = $_POST['answerTwo'];
-$answerThree = $_POST['answerThree'];
-$answerFour = $_POST['answerFour'];
+// $answerOne = $_POST['answerOne'];
+// $answerTwo = $_POST['answerTwo'];
+// $answerThree = $_POST['answerThree'];
+// $answerFour = $_POST['answerFour'];
+//
+// var_dump($answerOne);
+// var_dump($answerTwo);
+// var_dump($answerThree);
+// var_dump($answerFour);
 // $answer2 = $_POST['question-2-answers'];
 // $answer3 = $_POST['question-3-answers'];
 // $answer4 = $_POST['question-4-answers'];
 // $answer5 = $_POST['question-5-answers'];
 // Counter for correct answers
+
+$choice = $_POST['choice'];
+var_dump($choice);
+
 $questionCounter = 1;
 $totalCorrect = 0;
 ?>
@@ -53,7 +62,7 @@ $totalCorrect = 0;
             <label class="lead" for="answerFour">' . $quizArray[$i]->answer_four . '</label>
           </div>
           <br>';
-          if ($quizArray[$i]->correct_answer == $answerOne | $answerTwo | $answerThree | $answerFour)
+          if ($quizArray[$i]->correct_answer == $choice)
           {
             echo "correct";
             // Add 1 to correct answers counter

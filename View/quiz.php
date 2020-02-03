@@ -33,16 +33,16 @@
         echo
         '<div>
           <h3>Question ' . $questionCounter . '. ' . $quizArray[$i]->description . '</h3>
-          <input type="radio" name="answerOne" id="answerOne" required/>
+          <input type="radio" name="choice" id="answerOne" value="' . $quizArray[$i]->id . '" required/>
           <label class="lead" for="answerOne">' . $quizArray[$i]->answer_one . '</label>
           <br>
-          <input type="radio" name="answerTwo" id="answerTwo" required/>
+          <input type="radio" name="choice" id="answerTwo" value="' . $quizArray[$i]->id . '" required/>
           <label class="lead" for="answerTwo">' . $quizArray[$i]->answer_two . '</label>
           <br>
-          <input type="radio" name="answerThree" id="answerThree" required/>
+          <input type="radio" name="choice" id="answerThree" value="' . $quizArray[$i]->id . '" required/>
           <label class="lead" for="answerThree">' . $quizArray[$i]->answer_three . '</label>
           <br>
-          <input type="radio" name="answerFour" id="answerFour" required/>
+          <input type="radio" name="choice" id="answerFour" value="' . $quizArray[$i]->id . '" required/>
           <label class="lead" for="answerFour">' . $quizArray[$i]->answer_four . '</label>
         </div>
         <br>';
