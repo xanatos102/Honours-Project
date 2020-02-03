@@ -29,21 +29,21 @@
     <form action="quiz-result.php" method="post" id="quiz">
       <?php
       for ($i=0 ; $i < sizeof($quizArray) ; $i++){
-
+// inputs had a value="A" etc
         echo
         '<div>
           <h3>Question ' . $questionCounter . '. ' . $quizArray[$i]->description . '</h3>
-          <input type="radio" name="question-1-answers" id="question-1-answers-A" value="A" required/>
-          <label class="lead" for="question-1-answers-A">' . $quizArray[$i]->answer_one . '</label>
+          <input type="radio" name="answerOne" id="answerOne" required/>
+          <label class="lead" for="answerOne">' . $quizArray[$i]->answer_one . '</label>
           <br>
-          <input type="radio" name="question-1-answers" id="question-1-answers-B" value="B" required/>
-          <label class="lead" for="question-1-answers-B">' . $quizArray[$i]->answer_two . '</label>
+          <input type="radio" name="answerTwo" id="answerTwo" required/>
+          <label class="lead" for="answerTwo">' . $quizArray[$i]->answer_two . '</label>
           <br>
-          <input type="radio" name="question-1-answers" id="question-1-answers-C" value="C" required/>
-          <label class="lead" for="question-1-answers-C">' . $quizArray[$i]->answer_three . '</label>
+          <input type="radio" name="answerThree" id="answerThree" required/>
+          <label class="lead" for="answerThree">' . $quizArray[$i]->answer_three . '</label>
           <br>
-          <input type="radio" name="question-1-answers" id="question-1-answers-D" value="D" required/>
-          <label class="lead" for="question-1-answers-D">' . $quizArray[$i]->answer_four . '</label>
+          <input type="radio" name="answerFour" id="answerFour" required/>
+          <label class="lead" for="answerFour">' . $quizArray[$i]->answer_four . '</label>
         </div>
         <br>';
         $questionCounter++;
