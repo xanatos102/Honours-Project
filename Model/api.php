@@ -5,25 +5,50 @@
 */
 
 // Retrieve all topic data from topic table.
-function retrieveAllTopics(){
+function retrieveQuizData(){
 
   require 'db-connection.php';
 
-  $sql = "SELECT * FROM topic";
+  // Set question number
+  $number = (int) $_GET['n'];
+
+  // Get total questions
+  $sql = "SELECT * FROM question";
 
   $stmt = $pdo->prepare($sql);
-  $result = $stmt->fetch();
-  $success = $stmt->execute();
+  $stmt->execute();
+  $total = $stmt->rowCount();
 
-  if($success && $stmt->rowCount() > 0)
-  {
-    //  convert to JSON
-    $rows = array();
-    while($r = $stmt->fetch())
-    {
-      $rows[] = $r;
-    }
-    return json_encode($rows);
+
+  $sql = "SELECT * FROM question
+          WHERE question_number = $number";
+
+  $stmt = $pdo->prepare($sql);
+  $success = $stmt->execute();
+  if($success && $stmt->rowCount() > 0){
+
+    $questions = $stmt->fetch();
+    var_dump($questions[0]);
+    return $questions;
+
+  } else {
+    echo "fail!";
+  }
+
+
+  $sql = "SELECT * FROM choice
+          WHERE question_number = $number";
+
+  $stmt = $pdo->prepare($sql);
+  $success = $stmt->execute();
+  if($success && $stmt->rowCount() > 0){
+
+    $choices = $stmt->fetch();
+    var_dump($choices[0]);
+    return $choices;
+
+  } else {
+    echo "fail!";
   }
 }
 
@@ -33,29 +58,57 @@ function displayTopicById(){
 }
 
 // Retrieve quiz data from the quiz table.
-function retrieveQuestions(){
-  // Connect to database
-  require "db-connection.php";
-  // SQL query to retrieve quiz data
-  $sql = "SELECT * FROM question";
-  // Create statement template
-  $stmt = $pdo->prepare($sql);
-  // Fetch results from prepared statement
-  $result = $stmt->fetch();
-  // Execute the prepared statement
-  $success = $stmt->execute();
-  // If successfully executed
-  if($success && $stmt->rowCount() > 0){
-    // Assign variable with array type
-    $rows = array();
-    // Add rows to array until last row is added
-    while($r = $stmt->fetch()){
-      $rows[] = $r;
-    }
-    // Convert array into JSON string
-    return json_encode($rows);
-  }
-}
+// function retrieveQuestions(){
+//   // Connect to database
+//   require "db-connection.php";
+//   // Set question number
+//   $number = (int) $_GET['n'];
+//   // SQL query to retrieve quiz data
+//   $sql = "SELECT * FROM question WHERE question_number = $number";
+//   // Create statement template
+//   $stmt = $pdo->prepare($sql);
+//   // Fetch results from prepared statement
+//   $result = $stmt->fetch();
+//   // Execute the prepared statement
+//   $success = $stmt->execute();
+//   // If successfully executed
+//   if($success && $stmt->rowCount() > 0){
+//     // Assign variable with array type
+//     $rows = array();
+//     // Add rows to array until last row is added
+//     while($r = $stmt->fetch()){
+//       $rows[] = $r;
+//     }
+//     // Convert array into JSON string
+//     return json_encode($rows);
+//   }
+// }
+
+// function retrieveChoices(){
+//   // Connect to database
+//   require "db-connection.php";
+//   // Set question number
+//   $number = (int) $_GET['n'];
+//   // SQL query to retrieve quiz data
+//   $sql = "SELECT * FROM choice WHERE question_number = $number";
+//   // Create statement template
+//   $stmt = $pdo->prepare($sql);
+//   // Fetch results from prepared statement
+//   $result = $stmt->fetch();
+//   // Execute the prepared statement
+//   $success = $stmt->execute();
+//   // If successfully executed
+//   if($success && $stmt->rowCount() > 0){
+//     // Assign variable with array type
+//     $rows = array();
+//     // Add rows to array until last row is added
+//     while($r = $stmt->fetch()){
+//       $rows[] = $r;
+//     }
+//     // Convert array into JSON string
+//     return json_encode($rows);
+//   }
+// }
 
 // Insert credentials for new admins.
 function registerAccount(){
@@ -351,15 +404,27 @@ function createNewQuestion(){
   function retrieveTotalQuestions(){
     require 'db-connection.php';
 
-    $sql = "SELECT * FROM question";
+    // $sql = "SELECT * FROM question ORDER BY question_id DESC LIMIT 0, 1";
+    //
+    // $stmt = $pdo->prepare($sql);
+    // $stmt->execute();
+    // $total = $stmt->rowCount();
+    // // $total = $question->num_rows;
+    // $next = $total+1;
+    //
+    // return $next;
 
+    $sql = "SELECT MAX(question_number) FROM question";
     $stmt = $pdo->prepare($sql);
-    $stmt->execute();
-    $total = $stmt->rowCount();
-    // $total = $question->num_rows;
-    $next = $total+1;
+    $success = $stmt->execute();
+    if($success && $stmt->rowCount() > 0){
 
-    return $next;
+      $nextNo = $stmt->fetch();
+      return $nextNo[0]+1;
+
+    } else {
+      echo "fail!";
+    }
   }
 
 // Insert new topic information into topic table.

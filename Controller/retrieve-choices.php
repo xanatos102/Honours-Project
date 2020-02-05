@@ -7,7 +7,7 @@
 // Path to API with required functions
 include_once '../Model/api.php';
 // Assign JSON string to variable
-$questions = retrieveQuizData();
+$choices = retrieveChoices();
 // Decode JSON string and assign to variable
-
+$choiceArray = json_decode($choices);
  ?>
