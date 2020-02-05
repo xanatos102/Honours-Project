@@ -1,6 +1,6 @@
 <?php
 /*
-    Description: Control file to retrieve quiz data from pi_quiz_db
+    Description: Control file to retrieve quiz data from database.
     Author: Aaron Hay
 */
 
