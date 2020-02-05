@@ -217,6 +217,15 @@ function createNewQuestion(){
 
   require 'db-connection.php';
 
+  // $sql = "SELECT * FROM question";
+  //
+  // $stmt = $pdo->prepare($sql);
+  // $stmt->execute();
+  // $total = $stmt->rowCount();
+  // // $total = $question->num_rows;
+  // $next = $total+1;
+  // // var_dump($next);
+
   if (isset($_POST["submit_question"])){
 
     $question_number = (filter_input(INPUT_POST, 'question_number', FILTER_SANITIZE_NUMBER_INT));
@@ -246,6 +255,8 @@ function createNewQuestion(){
     // $answerError;
     // $correctAnswerError;
     // $topicError;
+
+
 
     $sql = "INSERT INTO question (question_number, description, topic)
             VALUES( '$question_number', '$question_text', '$topic')";
@@ -288,11 +299,16 @@ function createNewQuestion(){
           //   echo $query -> errorInfo()[2];
           // }
 
+          if ($success){
+            echo "Insert Successful";
+            header('Location: ../View/question-form.php?error=Success.');
+          } else {
+            echo "Insert Failed";
+            echo $query -> errorInfo()[2];
+          }
         }
       }
-      $msg = 'Question has been added';
     }
-
   }
 
 
@@ -329,16 +345,22 @@ function createNewQuestion(){
     //   'topic' => $topic
     // ]);
 
+
+  }
+
+  function retrieveTotalQuestions(){
+    require 'db-connection.php';
+
     $sql = "SELECT * FROM question";
 
     $stmt = $pdo->prepare($sql);
     $stmt->execute();
     $total = $stmt->rowCount();
-  	// $total = $question->num_rows;
-  	$next = $total+1;
-    var_dump($next);
-  }
+    // $total = $question->num_rows;
+    $next = $total+1;
 
+    return $next;
+  }
 
 // Insert new topic information into topic table.
 function createNewTopic(){

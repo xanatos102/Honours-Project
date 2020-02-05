@@ -6,8 +6,7 @@ include 'session.php';
 <!-- <head> -->
 <?php
     include 'header.php';
-    include '../Model/api.php';
-    createNewQuestion();
+    include '../Controller/attempt-retrieve-question-total.php';
 ?>
 <!-- </head> -->
 <title>Question Form</title>
@@ -16,15 +15,10 @@ include 'session.php';
 <div class="container">
 
   <h1 class="text-center mt-4">Add Question</h1>
-  <?php
-    	if(isset($msg)){
-    		echo '<p>'.$msg.'</p>';
-    	}
-	?>
-  <form class="form-group needs-validation" action="question-form.php" method="POST" novalidate>
+  <form class="form-group needs-validation" action="../Controller/attempt-create-question.php" method="POST" novalidate>
     <div class="form-group">
-      <label for="question_number">Question Number: (Required)</label>
-      <input type="number" class="form-control" value="<?php echo $next; ?>" name="question_number" />
+      <label for="question_number">Question Number:</label>
+      <input type="number" class="form-control" value="<?php echo $nextQuestionNo; ?>" name="question_number" readonly/>
     </div>
     <div class="form-group">
       <label for="question_text">Question Text: (Required)</label>
