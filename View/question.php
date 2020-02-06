@@ -30,7 +30,6 @@
     if($success && $stmt->rowCount() > 0){
 
       $questions = $stmt->fetch(PDO::FETCH_ASSOC);
-      var_dump($questions);
 
     } else {
       echo "fail!";
@@ -44,7 +43,6 @@
     if($success && $stmt->rowCount() > 0){
 
       $choices = $stmt->fetchAll(PDO::FETCH_ASSOC);
-      var_dump($choices);
 
     } else {
       echo "fail!";
@@ -64,9 +62,10 @@
 			</p>
 			<form method="post" action="process.php">
 				<ul class="choices">
-					<?php while($row = $choices->fetch_assoc()): ?>
-						<li><input name="choice" type="radio" value="<?php echo $row['id']; ?>" /><?php echo $row['description']; ?></li>
-					<?php endwhile; ?>
+          <?php foreach ($choices as $choice) { ?>
+              <li><input name="choice" type="radio" value="<?php echo $choice['id']; ?>" /><?php echo $choice['description']; ?></li>
+          <?php } ?>
+
 				</ul>
 				<input type="submit" value="Submit" />
 				<input type="hidden" name="number" value="<?php echo $number; ?>" />
