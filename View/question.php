@@ -65,7 +65,6 @@
           <?php foreach ($choices as $choice) { ?>
               <li><input name="choice" type="radio" value="<?php echo $choice['id']; ?>" /><?php echo $choice['description']; ?></li>
           <?php } ?>
-
 				</ul>
 				<input type="submit" value="Submit" />
 				<input type="hidden" name="number" value="<?php echo $number; ?>" />
