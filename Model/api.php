@@ -247,6 +247,7 @@ function login(){
         $_SESSION['userId'] = $result['id'];
         $_SESSION['username'] = $result['username'];
         $_SESSION['firstName'] = $result['first_name'];
+        $_SESSION['lastName'] = $result['last_name'];
         header('location: ../View/management.php');
       }
       else

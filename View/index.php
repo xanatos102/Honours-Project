@@ -4,6 +4,24 @@
     Author: Aaron Hay
 */
 ?>
+<?php
+
+  include '../Model/db-connection.php';
+
+  $sql = "SELECT * FROM topic";
+  $stmt = $pdo->prepare($sql);
+  $success = $stmt->execute();
+
+  if($success && $stmt->rowCount() > 0){
+
+    $topics = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    var_dump($topics);
+
+  } else {
+    echo "No records found.";
+  }
+
+ ?>
 <html>
 <!--<head>-->
     <?php
@@ -12,8 +30,9 @@
     //phpinfo()
     ?>
 <!-- </head> -->
-<title>Cyber Safe Seniors</title>
+<title>Honours Project - Home</title>
 <body>
+
 <?php
   //Error Reporting for the users
   if(isset($_GET['error']))
