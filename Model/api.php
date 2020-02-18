@@ -431,5 +431,120 @@ function createNewQuestion(){
 // Insert new topic information into topic table.
 function createNewTopic(){
 
+  require 'db-connection.php';
+
+  if (isset($_POST['submit_topic'])){
+
+    $file = $_FILES['image_link'];
+
+    $fileName = $_FILES['image_link']['name'];
+    $fileTmpName = $_FILES['image_link']['tmp_name'];
+    $fileSize = $_FILES['image_link']['size'];
+    $fileError = $_FILES['image_link']['error'];
+    $fileType = $_FILES['image_link']['type'];
+
+    $fileExt = explode('.', $fileName);
+    $fileActualExt = strtolower(end($fileExt));
+
+    $allowed = array('jpg', 'jpeg', 'png');
+
+    // Checks if file is an allowed type
+    if (in_array($fileActualExt, $allowed))
+    {
+        // Checks there are no errors
+        if ($fileError === 0)
+        {
+            // Checks file size is below stated value
+            if ($fileSize < 1000000)
+            {
+                // Gives file a unique id to stop overwriting of files with same name
+                $fileNameNew = uniqid('', true) . "." . $fileActualExt;
+                // Determines file location
+                $fileDestination = '../View/images/' . $fileNameNew;
+                // Sends file to specified location
+                move_uploaded_file($fileTmpName, $fileDestination);
+
+                // Once complete carry out the INSERT statement to database
+                $title = (filter_input(INPUT_POST, 'title', FILTER_SANITIZE_STRING));
+                $author = (filter_input(INPUT_POST, 'author', FILTER_SANITIZE_STRING));
+                $image = $fileDestination;
+                $date = date("d/m/Y");
+
+                // Initialise error variables
+                $error = false;
+                $topicError;
+                $authorError;
+
+                if(!preg_match("/^[a-zA-Z0-9]*$/", $topic))
+                {
+                  $error = true;
+                  $topicError = ":Topic can only contain letters and numbers.";
+                }
+
+                if(!preg_match("/^[a-zA-Z ]*$/",$author))
+                {
+                  $error = true;
+                  $authorError = ":Authors name can only contain letters.";
+                }
+
+                if($error == true) // An Error Has Occured
+                {
+                  $errorString = $topicError.$authorError;
+                  header('Location: ../View/topic-form.php?error='.$errorString);
+                }
+                else
+                {
+
+                $query = $pdo->prepare
+                ("
+
+                INSERT INTO topic (title, author, image_link, date)
+                VALUES (:title, :author, :image, :date)
+
+                ");
+
+
+                $success = $query->execute
+                ([
+                  'title' => $title,
+                  'author' => $author,
+                  'image' => $image,
+                  'date' => $date
+                ]);
+
+                $count = $query->rowCount();
+                if($count > 0)
+                {
+                  $success = "Insert successful!";
+                  header('location: ../View/topic-form.php?success='.$success);
+                }
+                else
+                {
+                  $invalidError = "Insert failed";
+                  header('location: ../View/topic-form.php?error='.$invalidError);
+                }
+              }
+            }
+            else
+            {
+                $invalidError = "Your file is too big!";
+                header('location: ../View/topic-form.php?error='.$invalidError);
+            }
+        }
+        else
+        {
+            $invalidError = "There was an error uploading your file!";
+            header('location: ../View/topic-form.php?error='.$invalidError);
+        }
+    }
+    else
+    {
+        $invalidError = "You cannot upload ";
+        var_dump($fileExt);
+        //header('location: ../View/topic-form.php?error='.$invalidError);
+    }
+
+  }
+
 }
 ?>

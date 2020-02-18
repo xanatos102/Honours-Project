@@ -15,18 +15,30 @@ $lastName = $_SESSION['lastName'];
 
 <div class="container">
   <h1 class="text-center mt-4">Add New Topic</h1>
-  <form class="form-group needs-validation" action="../Controller/attempt-create-question.php" method="POST" novalidate>
+
+  <?php
+  echo '<form class="form-group needs-validation" action="../Controller/attempt-create-topic.php" method="POST" enctype="multipart/form-data" novalidate>
+    <div class="form-group">
+      <label for="title">Title:</label>
+      <input type="text" class="form-control" placeholder="Title" name="title" />
+    </div>
     <div class="form-group">
       <label for="author">Author:</label>
-      <input type="text" class="form-control" value="<?php echo $firstName . ' ' . $lastName; ?>" name="author" readonly/>
+      <input type="text" class="form-control" value="'.$firstName . ' ' . $lastName.'" name="author" readonly/>
     </div>
-    <div class="custom-file">
-      <label class="custom-file-label" for="headlineImage">Choose image</label>
-      <input type="file" class="custom-file-input" name="headlineImageUpload" />
-    </div>
-    <button type="submit" id="submit_topic" name="submit_topic" class="btn btn-secondary">Submit</button>
-  </form>
 
+
+    <div class="form-group input-group" form-group-lg>
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="inputGroupPrepend">Headline Image</span>
+      </div>
+      <input class="btn btn-outline-light" type="file" name="image_link" required>
+    </div>
+
+
+    <button type="submit" name="submit_topic" class="btn btn-secondary">Submit</button>
+  </form>';
+?>
   <?php
   //Error Reporting for the users
   if(isset($_GET['error']))
