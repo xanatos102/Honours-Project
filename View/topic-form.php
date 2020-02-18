@@ -26,20 +26,15 @@ $lastName = $_SESSION['lastName'];
       <label for="author">Author:</label>
       <input type="text" class="form-control" value="'.$firstName . ' ' . $lastName.'" name="author" readonly/>
     </div>
-
-
     <div class="form-group input-group" form-group-lg>
       <div class="input-group-prepend">
         <span class="input-group-text" id="inputGroupPrepend">Headline Image</span>
       </div>
       <input class="btn btn-outline-light" type="file" name="image_link" required>
     </div>
-
-
     <button type="submit" name="submit_topic" class="btn btn-secondary">Submit</button>
   </form>';
-?>
-  <?php
+
   //Error Reporting for the users
   if(isset($_GET['error']))
   {

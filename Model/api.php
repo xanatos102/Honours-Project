@@ -4,7 +4,30 @@
     Author: Aaron Hay
 */
 
-// Retrieve all topic data from topic table.
+// Retrieve all topics
+function getAllTopics(){
+
+  require 'db-connection.php';
+
+  $sql = "SELECT * FROM topic";
+
+  $stmt = $pdo->prepare($sql);
+  $result = $stmt->fetch();
+  $success = $stmt->execute();
+
+  if($success && $stmt->rowCount() > 0)
+  {
+    //  convert to JSON
+    $rows = array();
+    while($r = $stmt->fetch())
+    {
+      $rows[] = $r;
+    }
+    return json_encode($rows);
+  }
+}
+
+// Retrieve all quiz data from quiz table.
 function retrieveQuizData(){
 
   require 'db-connection.php';
