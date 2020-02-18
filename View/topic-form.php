@@ -20,6 +20,10 @@ $lastName = $_SESSION['lastName'];
       <label for="author">Author:</label>
       <input type="text" class="form-control" value="<?php echo $firstName . ' ' . $lastName; ?>" name="author" readonly/>
     </div>
+    <div class="custom-file">
+      <label class="custom-file-label" for="headlineImage">Choose image</label>
+      <input type="file" class="custom-file-input" name="headlineImageUpload" />
+    </div>
     <button type="submit" id="submit_topic" name="submit_topic" class="btn btn-secondary">Submit</button>
   </form>
 
