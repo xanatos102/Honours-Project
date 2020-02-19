@@ -459,6 +459,7 @@ function createNewTopic(){
   if (isset($_POST['submit_topic'])) {
 
     $image = $_FILES['image_link'];
+    $file = $_FILES['content_link']
 
     $imageName = $_FILES['image_link']['name'];
     $imageTmpName = $_FILES['image_link']['tmp_name'];
@@ -466,13 +467,22 @@ function createNewTopic(){
     $imageError = $_FILES['image_link']['error'];
     $imageType = $_FILES['image_link']['type'];
 
+    $fileName = $_FILES['content_link']['name'];
+    $fileTmpName = $_FILES['content_link']['tmp_name'];
+    $fileSize = $_FILES['content_link']['size'];
+    $fileError = $_FILES['content_link']['error'];
+    $fileType = $_FILES['content_link']['type'];
+
     $imageExt = explode('.', $imageName);
     $imageActualExt = strtolower(end($imageExt));
+    $allowedImageTypes = array('jpg', 'jpeg', 'png');
 
-    $allowed = array('jpg', 'jpeg', 'png');
+    $fileExt = explode('.', $fileName);
+    $fileActualExt = strtolower(end($fileExt));
+    $allowedFileTypes = array('txt', 'html');
 
     // Checks if file is an allowed type
-    if (in_array($imageActualExt, $allowed)) {
+    if (in_array($imageActualExt, $allowedImageTypes)) {
         // Checks there are no errors
         if ($imageError === 0) {
             // Checks file size is below stated value
