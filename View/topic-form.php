@@ -32,6 +32,7 @@ $lastName = $_SESSION['lastName'];
       </div>
       <input class="btn btn-outline-light" type="file" name="image_link" required>
     </div>
+    
     <button type="submit" name="submit_topic" class="btn btn-secondary">Submit</button>
   </form>';
 
