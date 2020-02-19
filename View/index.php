@@ -70,7 +70,7 @@
       }
     }
 
-    echo '</div></div><br>';
+    echo '</div></div></div><br>';
    ?>
 
 </div>
