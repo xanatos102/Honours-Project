@@ -454,12 +454,15 @@ function createNewQuestion(){
 // Insert new topic information into topic table.
 function createNewTopic(){
 
+  // Establish connection to database
   require 'db-connection.php';
 
+  // Check button from topic form was pressed
   if (isset($_POST['submit_topic'])) {
 
+    // Set image and file variables for processing
     $image = $_FILES['image_link'];
-    $file = $_FILES['content_link']
+    $file = $_FILES['file_link'];
 
     $imageName = $_FILES['image_link']['name'];
     $imageTmpName = $_FILES['image_link']['tmp_name'];
@@ -467,95 +470,131 @@ function createNewTopic(){
     $imageError = $_FILES['image_link']['error'];
     $imageType = $_FILES['image_link']['type'];
 
-    $fileName = $_FILES['content_link']['name'];
-    $fileTmpName = $_FILES['content_link']['tmp_name'];
-    $fileSize = $_FILES['content_link']['size'];
-    $fileError = $_FILES['content_link']['error'];
-    $fileType = $_FILES['content_link']['type'];
+    $fileName = $_FILES['file_link']['name'];
+    $fileTmpName = $_FILES['file_link']['tmp_name'];
+    $fileSize = $_FILES['file_link']['size'];
+    $fileError = $_FILES['file_link']['error'];
+    $fileType = $_FILES['file_link']['type'];
 
+    // Remove file extension and store in a variable
     $imageExt = explode('.', $imageName);
+    // Force extension to be lowercase and store in a new variable for error checking
     $imageActualExt = strtolower(end($imageExt));
+    // Set a variable with allowed image types
     $allowedImageTypes = array('jpg', 'jpeg', 'png');
 
     $fileExt = explode('.', $fileName);
     $fileActualExt = strtolower(end($fileExt));
     $allowedFileTypes = array('txt', 'html');
 
-    // Checks if file is an allowed type
+    // Checks if image is a valid type
     if (in_array($imageActualExt, $allowedImageTypes)) {
         // Checks there are no errors
         if ($imageError === 0) {
-            // Checks file size is below stated value
+            // Checks image size is below stated value
             if ($imageSize < 1000000) {
+              // Checks if file is a valid type
+              if (in_array($fileActualExt, $allowedFileTypes)) {
+                // Checks there are no errors
+                if ($fileError === 0) {
+                  // Checks image size is below stated value
+                  if ($fileSize < 3000000) {
 
-                // Gives file a unique id to stop overwriting of files with same name
-                $imageNameNew = uniqid('', true) . "." . $imageActualExt;
-                // Determines file location
-                $imageDestination = '../View/images/' . $imageNameNew;
-                // Sends file to specified location
-                move_uploaded_file($imageTmpName, $imageDestination);
+                    // Gives the image a unique id to stop overwriting of files with same name
+                    $imageNameNew = uniqid('', true) . "." . $imageActualExt;
+                    // Determines image location
+                    $imageDestination = '../View/images/' . $imageNameNew;
+                    // Determines file location
+                    $fileDestination = '../View/docs/' . $fileName;
+                    // Sends image to specified location
+                    move_uploaded_file($imageTmpName, $imageDestination);
+                    // Sends file to specified location
+                    move_uploaded_file($fileTmpName, $fileDestination);
 
-                // Once complete carry out the INSERT statement to database
-                $title = (filter_input(INPUT_POST, 'title', FILTER_SANITIZE_STRING));
-                $author = (filter_input(INPUT_POST, 'author', FILTER_SANITIZE_STRING));
-                $imageLink = $imageDestination;
-                $date = date("d/m/Y");
+                    // Once complete carry out the INSERT statement to database
+                    $title = (filter_input(INPUT_POST, 'title', FILTER_SANITIZE_STRING));
+                    $author = (filter_input(INPUT_POST, 'author', FILTER_SANITIZE_STRING));
+                    $imageLink = $imageDestination;
+                    $date = date("d/m/Y");
 
-                // Initialise error variables
-                $error = false;
-                $topicError;
-                $authorError;
+                    // Initialise error variables
+                    $error = false;
+                    $topicError;
+                    $authorError;
 
-                if (!preg_match("/^[a-zA-Z0-9]*$/", $topic)) {
-                  $error = true;
-                  $topicError = ":Topic can only contain letters and numbers.";
-                }
+                    // Checks variable matches expression conditions
+                    if (!preg_match("/^[a-zA-Z0-9]*$/", $topic)) {
+                      $error = true;
+                      $topicError = ":Topic can only contain letters and numbers.";
+                    }
 
-                if (!preg_match("/^[a-zA-Z ]*$/",$author)) {
-                  $error = true;
-                  $authorError = ":Authors name can only contain letters.";
-                }
+                    // Checks variable matches expression conditions
+                    if (!preg_match("/^[a-zA-Z ]*$/",$author)) {
+                      $error = true;
+                      $authorError = ":Authors name can only contain letters.";
+                    }
 
-                if ($error == true) {
-                  $errorString = $topicError.$authorError;
-                  header('Location: ../View/topic-form.php?error='.$errorString);
+                    // Set error variable with appropriate errors
+                    if ($error == true) {
+                      $errorString = $topicError.$authorError;
+                      header('Location: ../View/topic-form.php?error='.$errorString);
+
+                    } else { // Once there are no errors process the sql statement
+
+                      $query = $pdo->prepare
+                      ("
+                      INSERT INTO topic (title, author, image_link, date)
+                      VALUES (:title, :author, :image, :date)
+                      ");
+
+                      $success = $query->execute
+                      ([
+                        'title' => $title,
+                        'author' => $author,
+                        'image' => $imageLink,
+                        'date' => $date
+                      ]);
+
+                      $count = $query->rowCount();
+                      if($count > 0){
+                        $success = "Insert successful!";
+                        header('location: ../View/topic-form.php?success='.$success);
+                      } else {
+                        $invalidError = "Insert failed";
+                        header('location: ../View/topic-form.php?error='.$invalidError);
+                      }
+
+                    } // End of sql statement
+
+                  } else {
+                      $invalidError = "Your file is too large. Maximum file size is 3MB.";
+                      header('location: ../View/topic-form.php?error='.$invalidError);
+                  } // End of file size check
+
                 } else {
+                    $invalidError = "There was an error uploading your file!";
+                    header('location: ../View/topic-form.php?error='.$invalidError);
+                } // End of file upload error check
 
-                $query = $pdo->prepare
-                ("
-                INSERT INTO topic (title, author, image_link, date)
-                VALUES (:title, :author, :image, :date)
-                ");
-
-                $success = $query->execute
-                ([
-                  'title' => $title,
-                  'author' => $author,
-                  'image' => $imageLink,
-                  'date' => $date
-                ]);
-
-                $count = $query->rowCount();
-                if($count > 0){
-                  $success = "Insert successful!";
-                  header('location: ../View/topic-form.php?success='.$success);
-                } else {
-                  $invalidError = "Insert failed";
+              } else {
+                  $invalidError = "You cannot upload files of this type ( .txt .html ) are permitted";
                   header('location: ../View/topic-form.php?error='.$invalidError);
-                }
-              }
+              } // End of file type check
+
             } else {
-                $invalidError = "Your file is too big!";
+                $invalidError = "Your image is too large. Maximum image size is 1MB.";
                 header('location: ../View/topic-form.php?error='.$invalidError);
-            }
+            } // End of image size check
+
         } else {
             $invalidError = "There was an error uploading your file!";
             header('location: ../View/topic-form.php?error='.$invalidError);
-        }
+        } // End of image upload error check
+
     } else {
-        $invalidError = "You cannot upload files of this type ( .jpg .jpeg .png ) are permitted";
+        $invalidError = "You cannot upload images of this file type ( .jpg .jpeg .png ) are permitted";
         header('location: ../View/topic-form.php?error='.$invalidError);
-    }
+    } // End of image file type check
   }
 }
 ?>
