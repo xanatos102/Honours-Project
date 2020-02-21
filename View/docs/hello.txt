@@ -1,1 +1,12 @@
-Hi there!
+<h1>What is computer malware?</h1>
+<p>Computer malware, often referred to as a computer virus, is a broad term used to describe harmful computer software that is designed to infiltrate and damage computers without the users consent.</p>
+<h1>Common types of computer malware</h1>
+<p>Lorem ipsum...</p>
+<h1>How to protect yourself and your devices?</h1>
+<ol>
+<h3><li>Keep your computer/phone/tablet software up to date</li></h3>
+<p>Software developers such as Microsoft, Apple, and Android offer regular updates for their apps. These updates typically come with a number of fixes, most important of these are the bug and security fixes, which left unresolved, could potentially be exploited by hackers.</p>
+<p>It is recommended that you turn on automatic updates and notifcations to keep your apps and devices up-to-date on important software changes and fixes.</p>
+<h3><li>Use an antivirus software</li></h3>
+<p>some text.</p>
+</ol>

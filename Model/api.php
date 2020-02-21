@@ -76,8 +76,29 @@ function retrieveQuizData(){
 }
 
 // Display topic information by ID
-function displayTopicById(){
+function displayTopicById($topicId){
 
+  require 'db-connection.php';
+
+  $query = $pdo->prepare
+  ("
+  SELECT * FROM topic WHERE id = :topicid LIMIT 1
+  ");
+
+  $success = $query->execute
+  ([
+    'topicid' => $topicId
+  ]);
+
+  if($success && $query->rowCount() > 0)
+  {
+    $row = $query->fetch();
+    return json_encode($row);
+  }
+  else
+  {
+    echo "Unable to find topic";
+  }
 }
 
 // Retrieve quiz data from the quiz table.
@@ -485,7 +506,7 @@ function createNewTopic(){
 
     $fileExt = explode('.', $fileName);
     $fileActualExt = strtolower(end($fileExt));
-    $allowedFileTypes = array('txt', 'html');
+    $allowedFileTypes = array('txt', 'html', 'docx');
 
     // Checks if image is a valid type
     if (in_array($imageActualExt, $allowedImageTypes)) {
@@ -515,7 +536,8 @@ function createNewTopic(){
                     $title = (filter_input(INPUT_POST, 'title', FILTER_SANITIZE_STRING));
                     $author = (filter_input(INPUT_POST, 'author', FILTER_SANITIZE_STRING));
                     $imageLink = $imageDestination;
-                    $date = date("d/m/Y");
+                    $fileLink = $fileDestination;
+                    $date = date("Y/m/d");
 
                     // Initialise error variables
                     $error = false;
@@ -543,8 +565,8 @@ function createNewTopic(){
 
                       $query = $pdo->prepare
                       ("
-                      INSERT INTO topic (title, author, image_link, date)
-                      VALUES (:title, :author, :image, :date)
+                      INSERT INTO topic (title, author, image_link, file_link, date)
+                      VALUES (:title, :author, :image, :file, :date)
                       ");
 
                       $success = $query->execute
@@ -552,6 +574,7 @@ function createNewTopic(){
                         'title' => $title,
                         'author' => $author,
                         'image' => $imageLink,
+                        'file' => $fileLink,
                         'date' => $date
                       ]);
 
