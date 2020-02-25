@@ -13,10 +13,10 @@
 	</header>
 	<main>
 		<div class="container">
-			<h2>You're Done!</h2>
+			<?php echo '<h2>You are Done!</h2>
 				<p>Congrats! You have completed the test</p>
-				<p>Final Score: <?php echo $_SESSION['score']; ?></p>
-				<a href="question.php?n=1" class="start">Take Again</a>
+				<p>Final Score:' . $_SESSION['score'] . '</p>
+				<a href="question.php?topic=' . $_SESSION['topic'] . '&n=1" class="start">Take Again</a>';?>
 		</div>
 	</main>
 	<footer>
@@ -26,4 +26,5 @@
 	</footer>
 </body>
 </html>
-<?php session_destroy(); ?>
+<?php unset($_SESSION['number']);
+ 			unset($_SESSION['score']);?>

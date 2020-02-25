@@ -14,20 +14,22 @@
 
     $number = (int) $_GET['n'];
     $topic = $_GET['topic'];
+    $_SESSION['topic'] = $topic;
 
     // Get total questions
-    $sql = "SELECT * FROM question";
+    $sql = "SELECT * FROM question
+            WHERE topic = :topic";
 
     $stmt = $pdo->prepare($sql);
-    $stmt->execute();
+    $stmt->execute(['topic' => $topic]);
     $total = $stmt->rowCount();
 
 
     $sql = "SELECT * FROM question
-            WHERE question_number = :number AND topic = :topic";
+            WHERE question_number = :questionNumber AND topic = :topic";
 
     $stmt = $pdo->prepare($sql);
-    $success = $stmt->execute(['number' => $number, 'topic' => $topic]);
+    $success = $stmt->execute(['questionNumber' => $number, 'topic' => $topic]);
     if($success && $stmt->rowCount() > 0){
 
       $questions = $stmt->fetch(PDO::FETCH_ASSOC);

@@ -11,15 +11,17 @@ include '../Model/db-connection.php'; ?>
 		$number = $_POST['number'];
 		$selected_choice = $_POST['choice'];
 		$next = $number+1;
+		$topic = $_SESSION['topic'];
 
 		/*
 		*	Get total questions
 		*/
     // Get total questions
-    $sql = "SELECT * FROM question";
+    $sql = "SELECT * FROM question
+						WHERE topic = :topic";
 
     $stmt = $pdo->prepare($sql);
-    $stmt->execute();
+    $stmt->execute(['topic' => $topic]);
     $total = $stmt->rowCount();
 
 
@@ -63,6 +65,6 @@ include '../Model/db-connection.php'; ?>
 			header("Location: final.php");
 			exit();
 		} else {
-			header("Location: question.php?n=".$next);
+			header("Location: question.php?topic=" . $_SESSION['topic'] . "&n=".$next);
 		}
 	}
