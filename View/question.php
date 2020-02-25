@@ -13,6 +13,7 @@
     include '../Model/db-connection.php';
 
     $number = (int) $_GET['n'];
+    $topic = $_GET['topic'];
 
     // Get total questions
     $sql = "SELECT * FROM question";
@@ -23,10 +24,10 @@
 
 
     $sql = "SELECT * FROM question
-            WHERE question_number = $number";
+            WHERE question_number = :number AND topic = :topic";
 
     $stmt = $pdo->prepare($sql);
-    $success = $stmt->execute();
+    $success = $stmt->execute(['number' => $number, 'topic' => $topic]);
     if($success && $stmt->rowCount() > 0){
 
       $questions = $stmt->fetch(PDO::FETCH_ASSOC);
