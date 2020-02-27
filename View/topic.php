@@ -30,15 +30,13 @@
 
   <div class="container" style="margin-top: 2rem;">
 
-    <?php for ($i=0; $i < sizeof($topicArray); $i++){
-
+    <?php
       echo '<h1 class="display-1">' . $topicArray->title . '</h1>
       <p class="lead"> Author: ' . $topicArray->author . '</p>
       <img src="' . $topicArray->image_link . '">
       <p>' . file_get_contents($topicArray->file_link) . '</p>
       <a href="quiz.php?topic=' . $topicArray->title . '"  class="btn btn-success btn-lg">See more</a>';
-
-     } ?>
+     ?>
 
   </div>
 <?php
