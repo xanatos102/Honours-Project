@@ -36,7 +36,7 @@
       <p class="lead"> Author: ' . $topicArray->author . '</p>
       <img src="' . $topicArray->image_link . '">
       <p>' . file_get_contents($topicArray->file_link) . '</p>
-      <a href="question.php?topic=' . $topicArray->title . '&n=1"  class="btn btn-success btn-lg">See more</a>';
+      <a href="quiz.php?topic=' . $topicArray->title . '"  class="btn btn-success btn-lg">See more</a>';
 
      } ?>
 

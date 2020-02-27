@@ -26,23 +26,25 @@
 
 
     $sql = "SELECT * FROM question
-            WHERE question_number = :questionNumber AND topic = :topic";
+            WHERE topic = :topic";
 
     $stmt = $pdo->prepare($sql);
-    $success = $stmt->execute(['questionNumber' => $number, 'topic' => $topic]);
+    $success = $stmt->execute(['topic' => $topic]);
     if($success && $stmt->rowCount() > 0){
 
       $questions = $stmt->fetch(PDO::FETCH_ASSOC);
+      var_dump($questions);
 
     } else {
       echo "fail!";
     }
 
-    $sql = "SELECT * FROM choice
-            WHERE question_number = $number";
+    $sql = "SELECT choice.*, question.question_number, question.description AS question_description, question.topic FROM choice
+            INNER JOIN question ON choice.question_number=question.question_number
+            WHERE topic = :topic";
 
     $stmt = $pdo->prepare($sql);
-    $success = $stmt->execute();
+    $success = $stmt->execute(['topic' => $topic]);
     if($success && $stmt->rowCount() > 0){
 
       $choices = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -57,7 +59,7 @@
 <body>
   <div class="container" style="margin-top: 2em;">
 
-    <h1 class="display-1" style="align-items: center; display:flex;"><img src="images/professor2.png" alt="professor" style="width: 1.2em; height: 1.2em; margin-right: 0.25em;"/>Malware Questions</h1>
+    <h1 class="display-1" style="align-items: center; display:flex;"><img src="images/professor2.png" alt="professor" style="width: 1.2em; height: 1.2em; margin-right: 0.25em;"/><?php echo $topic . " Questions"; ?></h1>
     <hr>
     <div class="current">Question <?php echo $questions['question_number']; ?> of <?php echo $total; ?></div>
 			<p class="question">

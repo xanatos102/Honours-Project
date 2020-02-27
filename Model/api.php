@@ -27,54 +27,6 @@ function getAllTopics(){
   }
 }
 
-// Retrieve all quiz data from quiz table.
-function retrieveQuizData(){
-
-  require 'db-connection.php';
-
-  // Set question number
-  $number = (int) $_GET['n'];
-
-  // Get total questions
-  $sql = "SELECT * FROM question";
-
-  $stmt = $pdo->prepare($sql);
-  $stmt->execute();
-  $total = $stmt->rowCount();
-
-
-  $sql = "SELECT * FROM question
-          WHERE question_number = $number";
-
-  $stmt = $pdo->prepare($sql);
-  $success = $stmt->execute();
-  if($success && $stmt->rowCount() > 0){
-
-    $questions = $stmt->fetch();
-    var_dump($questions[0]);
-    return $questions;
-
-  } else {
-    echo "fail!";
-  }
-
-
-  $sql = "SELECT * FROM choice
-          WHERE question_number = $number";
-
-  $stmt = $pdo->prepare($sql);
-  $success = $stmt->execute();
-  if($success && $stmt->rowCount() > 0){
-
-    $choices = $stmt->fetch();
-    var_dump($choices[0]);
-    return $choices;
-
-  } else {
-    echo "fail!";
-  }
-}
-
 // Display topic information by ID
 function displayTopicById($topicId){
 
@@ -102,57 +54,54 @@ function displayTopicById($topicId){
 }
 
 // Retrieve quiz data from the quiz table.
-// function retrieveQuestions(){
-//   // Connect to database
-//   require "db-connection.php";
-//   // Set question number
-//   $number = (int) $_GET['n'];
-//   // SQL query to retrieve quiz data
-//   $sql = "SELECT * FROM question WHERE question_number = $number";
-//   // Create statement template
-//   $stmt = $pdo->prepare($sql);
-//   // Fetch results from prepared statement
-//   $result = $stmt->fetch();
-//   // Execute the prepared statement
-//   $success = $stmt->execute();
-//   // If successfully executed
-//   if($success && $stmt->rowCount() > 0){
-//     // Assign variable with array type
-//     $rows = array();
-//     // Add rows to array until last row is added
-//     while($r = $stmt->fetch()){
-//       $rows[] = $r;
-//     }
-//     // Convert array into JSON string
-//     return json_encode($rows);
-//   }
-// }
+function retrieveQuestions($topic){
+  // Connect to database
+  require_once "db-connection.php";
 
-// function retrieveChoices(){
-//   // Connect to database
-//   require "db-connection.php";
-//   // Set question number
-//   $number = (int) $_GET['n'];
-//   // SQL query to retrieve quiz data
-//   $sql = "SELECT * FROM choice WHERE question_number = $number";
-//   // Create statement template
-//   $stmt = $pdo->prepare($sql);
-//   // Fetch results from prepared statement
-//   $result = $stmt->fetch();
-//   // Execute the prepared statement
-//   $success = $stmt->execute();
-//   // If successfully executed
-//   if($success && $stmt->rowCount() > 0){
-//     // Assign variable with array type
-//     $rows = array();
-//     // Add rows to array until last row is added
-//     while($r = $stmt->fetch()){
-//       $rows[] = $r;
-//     }
-//     // Convert array into JSON string
-//     return json_encode($rows);
-//   }
-// }
+  $query = $pdo->prepare
+  ("
+  SELECT * FROM questions WHERE topic = :topic
+  ");
+
+  $success = $query->execute
+  ([
+    'topic' => $topic
+  ]);
+
+  if($success && $query->rowCount() > 0)
+  {
+    $row = $query->fetchAll();
+    return json_encode($row);
+  }
+  else
+  {
+    echo "Unable to find question";
+  }
+}
+
+function retrieveChoices($number){
+  // Connect to database
+  require_once "db-connection.php";
+  $query = $pdo->prepare
+  ("
+  SELECT * FROM choice WHERE question_number = :questionNumber
+  ");
+
+  $success = $query->execute
+  ([
+    'questionNumber' => $number
+  ]);
+
+  if($success && $query->rowCount() > 0)
+  {
+    $row = $query->fetch();
+    return json_encode($row);
+  }
+  else
+  {
+    echo "Unable to find choice";
+  }
+}
 
 // Insert credentials for new admins.
 function registerAccount(){

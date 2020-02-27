@@ -6,8 +6,11 @@
 
 // Path to API with required functions
 include_once '../Model/api.php';
+
+$number = $_POST['id'];
+
 // Assign JSON string to variable
-$choices = retrieveChoices();
+$choices = retrieveQuestions($number);
 // Decode JSON string and assign to variable
 $choiceArray = json_decode($choices);
  ?>

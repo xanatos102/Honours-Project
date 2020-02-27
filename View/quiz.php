@@ -10,8 +10,8 @@
     <?php
     include 'session.php';
     include 'header.php';
-    include '../Model/api.php';
-    retrieveQuizData();
+    include '../Controller/retrieve-questions.php';
+
     // include '../Controller/retrieve-questions.php';
     // include '../Controller/retrieve-choices.php';
     // $quiz = retrieveQuestions();
@@ -20,29 +20,34 @@
 
     // Count for question numbers
     $questionCounter = 1;
-    $number = (int) $_GET['n'];
+
     ?>
 </head>
 <title>Malware Quiz</title>
 <body>
   <div class="container" style="margin-top: 2em;">
-
-    <h1 class="display-1" style="align-items: center; display:flex;"><img src="images/professor2.png" alt="professor" style="width: 1.2em; height: 1.2em; margin-right: 0.25em;"/>Malware Questions</h1>
-    <hr>
-    <div class="current">Question <?php echo $question['question_number']; ?> of <?php echo $total; ?></div>
-			<p class="question">
-				<?php echo $question['description']; ?>
-			</p>
-			<form method="post" action="process.php">
-				<ul class="choices">
-					<?php while($row = $choices->fetch_assoc()): ?>
-						<li><input name="choice" type="radio" value="<?php echo $row['id']; ?>" /><?php echo $row['text']; ?></li>
-					<?php endwhile; ?>
-				</ul>
-				<input type="submit" value="Submit" />
-				<input type="hidden" name="number" value="<?php echo $number; ?>" />
-			</form>
-		</div>
+    <?php echo '<form action="quiz-result.php?topic=' . $_GET['topic'] . '" method="post" id="quiz">'; ?>
+      <h1 class="display-1" style="align-items: center; display:flex;"><img src="images/professor2.png" alt="professor" style="width: 1.2em; height: 1.2em; margin-right: 0.25em;"/>Malware Questions</h1>
+          <?php foreach ($questionArray as $question){
+          echo '<hr>
+                <h3>Q' . $questionCounter  . '. ' . $question['description'] . '</h3>
+                <br>
+                <input type="checkbox" name="answer[]" value="' . $question['answer_one'] . '" />
+                <label class="lead" for="question-1-answers-A">' . $question['answer_one'] . '</label>
+                <br>
+                <input type="checkbox" name="answer[]" value="' . $question['answer_two'] . '" />
+                <label class="lead" for="question-1-answers-B">' . $question['answer_two'] . '</label>
+                <br>
+                <input type="checkbox" name="answer[]" value="' . $question['answer_three'] . '" />
+                <label class="lead" for="question-1-answers-C">' . $question['answer_three'] . '</label>
+                <br>
+                <input type="checkbox" name="answer[]" value="' . $question['answer_four'] . '" />
+                <label class="lead" for="question-1-answers-D">' . $question['answer_four'] . '</label>';
+                $questionCounter++;
+          } ?>
+      </br>
+      <button type="submit" name="submitAnswers" class="btn btn-success btn-lg">Submit Quiz</button>
+    </form>
   </div>
   <?php include 'footer.php'; ?>
 </body>
