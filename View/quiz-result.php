@@ -28,6 +28,7 @@ $totalCorrect = 0;
   <div class="container" style="margin-top: 2em;">
     <h1 class="display-1" style="align-items: center; display:flex;"><img src="images/professor.png" alt="professor" style="width: 1.2em; height: 1.2em; margin-right: 0.25em;"/>Answers</h1>
     <hr>
+
         <?php
 
         if ($questionCounter = 1){
@@ -35,9 +36,21 @@ $totalCorrect = 0;
         }
 
         foreach ($questionArray as $question) {
+
+          if ($question['correct_answer'] == $nextAnswer ) {
+
+            $isCorrect = '<h3 style="color:green; text-align:center;">Correct!</h3>';
+            // Add 1 to correct answers counter
+            $totalCorrect++;
+
+          } else {
+            $isCorrect = '<h3 style="color:red; text-align:center;">Incorrect.</h3>';
+          }
+
           echo
           '<div>
-          <h3>Question ' . $questionCounter . '. ' . $question['description'] . '</h3>
+          <h1>Question ' . $questionCounter  . '.</h1>
+          <h2>'. $question['description'] . '</h2>
           <input type="radio" name="'. $nextAnswer .'" id="answerOne" value="' . $question['answer_one'] . '" readonly />
           <label class="lead" for="answerOne">' . $question['answer_one'] . '</label>
           <br>
@@ -49,25 +62,17 @@ $totalCorrect = 0;
           <br>
           <input type="radio" name="'. $nextAnswer .'" id="answerFour" value="' . $question['answer_four'] . '" />
           <label class="lead" for="answerFour">' . $question['answer_four'] . '</label></br>';
+          echo $isCorrect;
+          echo '<blockquote class="blockquote" style="text-align:center;">
+          <p class="mb-0">' . $question['tip'] . '</p>
+          <footer class="blockquote-footer">The professor</cite></footer>
+          </blockquote>
+          <hr>';
           $questionCounter++;
-
-          if ($question['correct_answer'] == $nextAnswer ) {
-
-            echo '<p style="color:green">Correct!</p>
-            <hr>';
-            // Add 1 to correct answers counter
-            $totalCorrect++;
-
-          } else {
-            echo '<p style="color:red">Incorrect.</p>
-            <hr>';
-
-            //var_dump($nextAnswer);
-          }
 
           $nextAnswer = next($answer);
           echo '</div>
-          <br>';
+          ';
         }
         //var_dump($quizArray);
         // Check if selected answer matches correct answer stored in the database

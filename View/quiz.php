@@ -31,7 +31,8 @@
         <hr>
           <?php foreach ($questionArray as $question){
 
-          echo '<h3>Q' . $questionCounter  . '. ' . $question['description'] . '</h3>
+          echo '<h1>Question ' . $questionCounter  . '.</h1>
+                <h2>'. $question['description'] . '</h2>
                 <br>
                 <input type="radio" name="answer[' . $question['id'] . ']" value="' . $question['answer_one'] . '" />
                 <label class="lead" for="question-1-answers-A">' . $question['answer_one'] . '</label>
