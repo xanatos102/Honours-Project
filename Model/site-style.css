@@ -6,23 +6,16 @@
     Author: Aaron Hay
  */
 
-/* RebeccaSamuelsW01 font
-   Copyright (c) 2001 by Hans Samuelson. All rights reserved.
-*/
-@import url(//db.onlinewebfonts.com/c/5a81378704abafb480427b49f4d0e6a4?family=RebeccaSamuelsW01-Regular);
 
-@font-face {font-family: "RebeccaSamuelsW01-Regular";
-src: url("//db.onlinewebfonts.com/t/5a81378704abafb480427b49f4d0e6a4.eot");
-src: url("//db.onlinewebfonts.com/t/5a81378704abafb480427b49f4d0e6a4.eot?#iefix")
-format("embedded-opentype"), url("//db.onlinewebfonts.com/t/5a81378704abafb480427b49f4d0e6a4.woff2")
-format("woff2"), url("//db.onlinewebfonts.com/t/5a81378704abafb480427b49f4d0e6a4.woff")
-format("woff"), url("//db.onlinewebfonts.com/t/5a81378704abafb480427b49f4d0e6a4.ttf")
-format("truetype"), url("//db.onlinewebfonts.com/t/5a81378704abafb480427b49f4d0e6a4.svg#RebeccaSamuelsW01-Regular")
-format("svg"); }
 
-body
+@import url("../fonts/proxima/stylesheet.css");
+
+
+
+html, body
 {
-    font-family: "RebeccaSamuelsW01-Regular";
+    font-family: 'Proxima Nova Rg';
+    font: "ProximaNova-Regular.woff2";
     background-color: #e6e6e6;
     font-size: 120% ;
 }

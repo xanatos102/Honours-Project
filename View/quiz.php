@@ -35,16 +35,16 @@
                 <h2>'. $question['description'] . '</h2>
                 <br>
                 <input type="radio" name="answer[' . $question['id'] . ']" value="' . $question['answer_one'] . '" />
-                <label class="lead" for="question-1-answers-A">' . $question['answer_one'] . '</label>
+                <label for="question-1-answers-A">' . $question['answer_one'] . '</label>
                 <br>
                 <input type="radio" name="answer[' . $question['id'] . ']" value="' . $question['answer_two'] . '" />
-                <label class="lead" for="question-1-answers-B">' . $question['answer_two'] . '</label>
+                <label for="question-1-answers-B">' . $question['answer_two'] . '</label>
                 <br>
                 <input type="radio" name="answer[' . $question['id'] . ']" value="' . $question['answer_three'] . '" />
-                <label class="lead" for="question-1-answers-C">' . $question['answer_three'] . '</label>
+                <label for="question-1-answers-C">' . $question['answer_three'] . '</label>
                 <br>
                 <input type="radio" name="answer[' . $question['id'] . ']" value="' . $question['answer_four'] . '" />
-                <label class="lead" for="question-1-answers-D">' . $question['answer_four'] . '</label>
+                <label for="question-1-answers-D">' . $question['answer_four'] . '</label>
                 <hr>';
                 $questionCounter++;
           } ?>

@@ -21,7 +21,7 @@
 
     <!-- Custom Css -->
     <style>
-    <?php include '../Controller/bootstrap-script.php'; ?>
+    
     <?php include '../Model/site-style.css'; ?>
     </style>
     <?php

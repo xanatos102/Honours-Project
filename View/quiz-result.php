@@ -49,19 +49,20 @@ $totalCorrect = 0;
 
           echo
           '<div>
-          <h1>Question ' . $questionCounter  . '.</h1>
-          <h2>'. $question['description'] . '</h2>
-          <input type="radio" name="'. $nextAnswer .'" id="answerOne" value="' . $question['answer_one'] . '" readonly />
-          <label class="lead" for="answerOne">' . $question['answer_one'] . '</label>
+          <h2>Question ' . $questionCounter  . '.</h2>
+          <h3>'. $question['description'] . '</h3>
+          <br>
+          <input type="radio" name="'. $nextAnswer .'" id="answerOne" value="' . $question['answer_one'] . '" />
+          <label for="answerOne">' . $question['answer_one'] . '</label>
           <br>
           <input type="radio" name="'. $nextAnswer .'" id="answerTwo" value="' . $question['answer_two'] . '" />
-          <label class="lead" for="answerTwo">' . $question['answer_two'] . '</label>
+          <label for="answerTwo">' . $question['answer_two'] . '</label>
           <br>
           <input type="radio" name="'. $nextAnswer .'" id="answerThree" value="' . $question['answer_three'] . '" />
-          <label class="lead" for="answerThree">' . $question['answer_three'] . '</label>
+          <label for="answerThree">' . $question['answer_three'] . '</label>
           <br>
           <input type="radio" name="'. $nextAnswer .'" id="answerFour" value="' . $question['answer_four'] . '" />
-          <label class="lead" for="answerFour">' . $question['answer_four'] . '</label></br>';
+          <label for="answerFour">' . $question['answer_four'] . '</label></br>';
           echo $isCorrect;
           echo '<blockquote class="blockquote" style="text-align:center;">
           <p class="mb-0">' . $question['tip'] . '</p>
@@ -86,16 +87,17 @@ $totalCorrect = 0;
        ?>
 
        <br>
-       <p class="lead">Please choose a link to return home, retry the quiz, or have a read through the <?php echo $question['topic']; ?> section again.</p>
+       <p>Please choose a link to return home, retry the quiz, or have a read through the <?php echo $question['topic']; ?> section again.</p>
+       <br>
        <div class="row">
          <div class="col-sm-4">
            <a href="index.php" class="btn btn-success btn-lg btn-block">Home</a>
          </div>
          <div class="col-sm-4">
-           <a href="quiz.php" class="btn btn-success btn-lg btn-block">Retry Quiz</a>
+           <?php echo '<a href="quiz.php?topic='. $topic .'&id='. $topicId .'" class="btn btn-success btn-lg btn-block">Retry Quiz</a>';?>
          </div>
          <div class="col-sm-4">
-           <?php echo'<a href="topic.php?'. $topic .'&id='. $topicId .'" class="btn btn-success btn-lg btn-block">Read more on ' . $question['topic'] . '</a>';?>
+           <?php echo'<a href="topic.php?topic='. $topic .'&id='. $topicId .'" class="btn btn-success btn-lg btn-block">Read more on ' . $question['topic'] . '</a>';?>
          </div>
        </div>
     </form>
