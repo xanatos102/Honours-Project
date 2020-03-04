@@ -52,16 +52,16 @@ $totalCorrect = 0;
           <h2>Question ' . $questionCounter  . '.</h2>
           <h3>'. $question['description'] . '</h3>
           <br>
-          <input type="radio" name="'. $nextAnswer .'" id="answerOne" value="' . $question['answer_one'] . '" />
+          <input type="radio" name="'. $nextAnswer .'" id="answerOne" value="' . $question['answer_one'] . '"'; if ($nextAnswer == $question['answer_one']) {echo 'checked="checked"';} echo'/>
           <label for="answerOne">' . $question['answer_one'] . '</label>
           <br>
-          <input type="radio" name="'. $nextAnswer .'" id="answerTwo" value="' . $question['answer_two'] . '" />
+          <input type="radio" name="'. $nextAnswer .'" id="answerTwo" value="' . $question['answer_two'] . '"'; if ($nextAnswer == $question['answer_two']) {echo 'checked="checked"';} echo' />
           <label for="answerTwo">' . $question['answer_two'] . '</label>
           <br>
-          <input type="radio" name="'. $nextAnswer .'" id="answerThree" value="' . $question['answer_three'] . '" />
+          <input type="radio" name="'. $nextAnswer .'" id="answerThree" value="' . $question['answer_three'] . '"'; if ($nextAnswer == $question['answer_three']) {echo 'checked="checked"';} echo' />
           <label for="answerThree">' . $question['answer_three'] . '</label>
           <br>
-          <input type="radio" name="'. $nextAnswer .'" id="answerFour" value="' . $question['answer_four'] . '" />
+          <input type="radio" name="'. $nextAnswer .'" id="answerFour" value="' . $question['answer_four'] . '"'; if ($nextAnswer == $question['answer_four']) {echo 'checked="checked"';} echo' />
           <label for="answerFour">' . $question['answer_four'] . '</label></br>';
           echo $isCorrect;
           echo '<blockquote class="blockquote" style="text-align:center;">
@@ -70,7 +70,6 @@ $totalCorrect = 0;
           </blockquote>
           <hr>';
           $questionCounter++;
-
           $nextAnswer = next($answer);
           echo '</div>
           ';
