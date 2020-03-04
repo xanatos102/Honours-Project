@@ -15,12 +15,6 @@
   $counter = 1;
   $nbsp = $cols - ($rows % $cols);
 
-  //Error Reporting for the users
-  if(isset($_GET['error'])){
-
-    $error = $_GET['error'];
-    echo $error;
-  }
 ?>
 <!DOCTYPE html>
 <html>

@@ -47,21 +47,20 @@ $totalCorrect = 0;
             $isCorrect = '<h3 style="color:red; text-align:center;">Incorrect.</h3>';
           }
 
-          echo
-          '<div>
+          echo '<div>
           <h2>Question ' . $questionCounter  . '.</h2>
           <h3>'. $question['description'] . '</h3>
           <br>
           <input type="radio" name="'. $nextAnswer .'" id="answerOne" value="' . $question['answer_one'] . '"'; if ($nextAnswer == $question['answer_one']) {echo 'checked="checked"';} echo'/>
           <label for="answerOne">' . $question['answer_one'] . '</label>
           <br>
-          <input type="radio" name="'. $nextAnswer .'" id="answerTwo" value="' . $question['answer_two'] . '"'; if ($nextAnswer == $question['answer_two']) {echo 'checked="checked"';} echo' />
+          <input type="radio" name="'. $nextAnswer .'" id="answerTwo" value="' . $question['answer_two'] . '"'; if ($nextAnswer == $question['answer_two']) {echo 'checked="checked"';} echo'/>
           <label for="answerTwo">' . $question['answer_two'] . '</label>
           <br>
-          <input type="radio" name="'. $nextAnswer .'" id="answerThree" value="' . $question['answer_three'] . '"'; if ($nextAnswer == $question['answer_three']) {echo 'checked="checked"';} echo' />
+          <input type="radio" name="'. $nextAnswer .'" id="answerThree" value="' . $question['answer_three'] . '"'; if ($nextAnswer == $question['answer_three']) {echo 'checked="checked"';} echo'/>
           <label for="answerThree">' . $question['answer_three'] . '</label>
           <br>
-          <input type="radio" name="'. $nextAnswer .'" id="answerFour" value="' . $question['answer_four'] . '"'; if ($nextAnswer == $question['answer_four']) {echo 'checked="checked"';} echo' />
+          <input type="radio" name="'. $nextAnswer .'" id="answerFour" value="' . $question['answer_four'] . '"'; if ($nextAnswer == $question['answer_four']) {echo 'checked="checked"';} echo'/>
           <label for="answerFour">' . $question['answer_four'] . '</label></br>';
           echo $isCorrect;
           echo '<blockquote class="blockquote" style="text-align:center;">
@@ -71,11 +70,9 @@ $totalCorrect = 0;
           <hr>';
           $questionCounter++;
           $nextAnswer = next($answer);
-          echo '</div>
-          ';
+          echo '</div>';
         }
-        //var_dump($quizArray);
-        // Check if selected answer matches correct answer stored in the database
+
         ?>
         <br>
 

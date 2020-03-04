@@ -7,11 +7,33 @@ include 'header.php';
 <html>
 <body>
 
-<div class="container">
-  <?php echo "<p class='mt-4'>Welcome " . $_SESSION['firstName'] . "</p>";?>
-  <p>This is your admin management page. Please select an option below.</p>
-  <a href="question-form.php" class="btn btn-success btn-lg">Add quiz question</a>
-  <a href="topic-form.php" class="btn btn-success btn-lg">Create New Topic</a>
+<div class="container mt-5">
+  <div class="jumbotron">
+    <?php echo '<h1 class="mt-4">Welcome ' . $_SESSION['firstName'] . '</h1>';?>
+    <p class="lead">This is your admin management page. To add a new question or update an existing one, please select an option from the Quiz Management portion of the page. To add a new topic or update an exisiting one, please select an option from the Topic Management portion of the page.</p>
+    <hr class="my-4">
+    <p>Please select an option below:</p>
+    <h2>Quiz Management</h2>
+    <div class="row">
+      <div class="col-sm-6">
+        <a href="question-form.php" class="btn btn-success btn-lg btn-block">Add Question</a>
+      </div>
+      <div class="col-sm-6">
+        <a href="" class="btn btn-success btn-lg btn-block">Update Question</a>
+      </div>
+    </div>
+    <br>
+    <h2>Topic Management</h2>
+    <div class="row">
+      <div class="col-sm-6">
+        <a href="topic-form.php" class="btn btn-primary btn-lg btn-block">Create New Topic</a>
+      </div>
+      <div class="col-sm-6">
+        <a href="" class="btn btn-primary btn-lg btn-block">Update Topic</a>
+      </div>
+    </div>
+    <a class="btn btn-secondary btn-lg btn-block mt-5" href="login.php" role="button">Logout</a>
+  </div>
 </div>
 
 </body>

@@ -12,13 +12,6 @@
     include 'header.php';
     include '../Controller/retrieve-questions.php';
 
-    // include '../Controller/retrieve-questions.php';
-    // include '../Controller/retrieve-choices.php';
-    // $quiz = retrieveQuestions();
-    // $quizArray = json_decode($quiz);
-    // var_dump($quizArray);
-
-    // Count for question numbers
     $questionCounter = 1;
 
     ?>
@@ -34,16 +27,16 @@
           echo '<h1>Question ' . $questionCounter  . '.</h1>
                 <h2>'. $question['description'] . '</h2>
                 <br>
-                <input type="radio" name="answer[' . $question['id'] . ']" value="' . $question['answer_one'] . '" />
+                <input type="radio" name="answer[' . $question['id'] . ']" value="' . $question['answer_one'] . '" required />
                 <label for="question-1-answers-A">' . $question['answer_one'] . '</label>
                 <br>
-                <input type="radio" name="answer[' . $question['id'] . ']" value="' . $question['answer_two'] . '" />
+                <input type="radio" name="answer[' . $question['id'] . ']" value="' . $question['answer_two'] . '" required />
                 <label for="question-1-answers-B">' . $question['answer_two'] . '</label>
                 <br>
-                <input type="radio" name="answer[' . $question['id'] . ']" value="' . $question['answer_three'] . '" />
+                <input type="radio" name="answer[' . $question['id'] . ']" value="' . $question['answer_three'] . '" required />
                 <label for="question-1-answers-C">' . $question['answer_three'] . '</label>
                 <br>
-                <input type="radio" name="answer[' . $question['id'] . ']" value="' . $question['answer_four'] . '" />
+                <input type="radio" name="answer[' . $question['id'] . ']" value="' . $question['answer_four'] . '" required />
                 <label for="question-1-answers-D">' . $question['answer_four'] . '</label>
                 <hr>';
                 $questionCounter++;
