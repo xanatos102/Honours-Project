@@ -19,9 +19,10 @@
 <title>Malware Quiz</title>
 <body>
   <div class="container" style="margin-top: 2em;">
+    <div class="jumbotron">
     <?php echo '<form action="quiz-result.php?topic=' . $topic . '&id=' . $topicId . '" method="post" id="quiz">'; ?>
-      <h1 class="display-1" style="align-items: center; display:flex;"><img src="images/professor2.png" alt="professor" style="width: 1.2em; height: 1.2em; margin-right: 0.25em;"/>Malware Questions</h1>
-        <hr>
+      <h1 class="display-3" style="align-items: center; display:flex;"><img src="images/professor2.png" alt="professor" style="width: 1.2em; height: 1.2em; margin-right: 0.25em;"/><?php echo $topic . ' Questions' ?></h1>
+        <hr class="my-4">
           <?php foreach ($questionArray as $question){
 
           echo '<h1>Question ' . $questionCounter  . '.</h1>
@@ -38,13 +39,14 @@
                 <br>
                 <input type="radio" name="answer[' . $question['id'] . ']" value="' . $question['answer_four'] . '" required />
                 <label for="question-1-answers-D">' . $question['answer_four'] . '</label>
-                <hr>';
+                <hr class="my-4">';
                 $questionCounter++;
           } ?>
 
       </br>
       <button type="submit" name="submitAnswers" class="btn btn-success btn-lg">Submit Quiz</button>
     </form>
+  </div>
   </div>
   <?php include 'footer.php'; ?>
 </body>

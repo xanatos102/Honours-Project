@@ -26,8 +26,9 @@ $totalCorrect = 0;
 <title>Quiz</title>
 <body>
   <div class="container" style="margin-top: 2em;">
-    <h1 class="display-1" style="align-items: center; display:flex;"><img src="images/professor.png" alt="professor" style="width: 1.2em; height: 1.2em; margin-right: 0.25em;"/>Answers</h1>
-    <hr>
+    <div class="jumbotron">
+    <h1 class="display-3" style="align-items: center; display:flex;"><img src="images/professor.png" alt="professor" style="width: 1.2em; height: 1.2em; margin-right: 0.25em;"/>Answers</h1>
+    <hr class="my-4">
 
         <?php
 
@@ -67,7 +68,7 @@ $totalCorrect = 0;
           <p class="mb-0">' . $question['tip'] . '</p>
           <footer class="blockquote-footer">The professor</cite></footer>
           </blockquote>
-          <hr>';
+          <hr class="my-4">';
           $questionCounter++;
           $nextAnswer = next($answer);
           echo '</div>';
@@ -97,6 +98,7 @@ $totalCorrect = 0;
          </div>
        </div>
     </form>
+  </div>
 </div>
   <?php include 'footer.php'; ?>
 </body>
