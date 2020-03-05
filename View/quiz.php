@@ -10,7 +10,7 @@
     <?php
     include 'session.php';
     include 'header.php';
-    include '../Controller/retrieve-questions.php';
+    include '../Controller/attempt-retrieve-questions.php';
 
     $questionCounter = 1;
 

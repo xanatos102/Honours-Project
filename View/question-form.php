@@ -6,7 +6,6 @@ include 'session.php';
 <!-- <head> -->
 <?php
     include 'header.php';
-    include '../Controller/attempt-retrieve-question-total.php';
 ?>
 <!-- </head> -->
 <title>Question Form</title>

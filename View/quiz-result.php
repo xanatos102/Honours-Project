@@ -20,7 +20,7 @@ $totalCorrect = 0;
     // Necessary components from other php files
     include 'session.php';
     include 'header.php';
-    include '../Controller/retrieve-questions.php';
+    include '../Controller/attempt-retrieve-questions.php';
     ?>
 </head>
 <title>Quiz</title>

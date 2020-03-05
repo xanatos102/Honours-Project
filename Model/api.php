@@ -79,30 +79,6 @@ function retrieveQuestions($topic){
   }
 }
 
-function retrieveChoices($number){
-  // Connect to database
-  require_once "db-connection.php";
-  $query = $pdo->prepare
-  ("
-  SELECT * FROM choice WHERE question_number = :questionNumber
-  ");
-
-  $success = $query->execute
-  ([
-    'questionNumber' => $number
-  ]);
-
-  if($success && $query->rowCount() > 0)
-  {
-    $row = $query->fetch();
-    return json_encode($row);
-  }
-  else
-  {
-    echo "Unable to find choice";
-  }
-}
-
 // Insert credentials for new admins.
 function registerAccount(){
 
@@ -310,32 +286,6 @@ function createNewQuestion(){
 
   }
 }
-
-function retrieveTotalQuestions(){
-    require 'db-connection.php';
-
-    // $sql = "SELECT * FROM question ORDER BY question_id DESC LIMIT 0, 1";
-    //
-    // $stmt = $pdo->prepare($sql);
-    // $stmt->execute();
-    // $total = $stmt->rowCount();
-    // // $total = $question->num_rows;
-    // $next = $total+1;
-    //
-    // return $next;
-
-    $sql = "SELECT MAX(question_number) FROM question";
-    $stmt = $pdo->prepare($sql);
-    $success = $stmt->execute();
-    if($success && $stmt->rowCount() > 0){
-
-      $nextNo = $stmt->fetch();
-      return $nextNo[0]+1;
-
-    } else {
-      echo "fail!";
-    }
-  }
 
 // Insert new topic information into topic table.
 function createNewTopic(){

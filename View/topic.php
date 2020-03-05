@@ -35,7 +35,9 @@
       <p> Date posted: ' . date('jS F, Y',strtotime($topicArray->date)) . '</p>
       <p>' . file_get_contents($topicArray->file_link) . '</p>
       <p>' . $fileError . '</p>
-      <a href="quiz.php?topic=' . $topicArray->title . '&id=' . $topicId . '"  class="btn btn-success btn-lg">Try Quiz</a>
+      <h1 style="margin-top: 1em;">Test your knowledge</h1>
+      <p class="lead">If you would like to test your exisiting knowledge on ' . $topicArray->title . ' or have a go at applying what you have just learned, try our quiz by clicking on the button below.</p>
+      <a href="quiz.php?topic=' . $topicArray->title . '&id=' . $topicId . '"  class="btn btn-success btn-lg">Try ' . $topicArray->title . ' Quiz</a>
       </div>';
      ?>
 
