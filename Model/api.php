@@ -264,138 +264,54 @@ function createNewQuestion(){
 
   require 'db-connection.php';
 
-  // $sql = "SELECT * FROM question";
-  //
-  // $stmt = $pdo->prepare($sql);
-  // $stmt->execute();
-  // $total = $stmt->rowCount();
-  // // $total = $question->num_rows;
-  // $next = $total+1;
-  // // var_dump($next);
-
   if (isset($_POST["submit_question"])){
 
-    $question_number = (filter_input(INPUT_POST, 'question_number', FILTER_SANITIZE_NUMBER_INT));
-    $question_text = (filter_input(INPUT_POST, 'question_text', FILTER_SANITIZE_STRING));
-    $correct_choice = (filter_input(INPUT_POST, 'correct_choice', FILTER_SANITIZE_NUMBER_INT));
+    $description = (filter_input(INPUT_POST, 'description', FILTER_SANITIZE_STRING));
+    $answerOne = (filter_input(INPUT_POST, 'answerOne', FILTER_SANITIZE_STRING));
+    $answerTwo = (filter_input(INPUT_POST, 'answerTwo', FILTER_SANITIZE_STRING));
+    $answerThree = (filter_input(INPUT_POST, 'answerThree', FILTER_SANITIZE_STRING));
+    $answerFour = (filter_input(INPUT_POST, 'answerFour', FILTER_SANITIZE_STRING));
+    $correctAnswer = (filter_input(INPUT_POST, 'correctAnswer', FILTER_SANITIZE_STRING));
     $topic = (filter_input(INPUT_POST, 'topic', FILTER_SANITIZE_STRING));
-
-    // Initialise array
-    $choices = array();
-    // Pass values into array slots
-    $choices[1] = $_POST['choice1'];
-    $choices[2] = $_POST['choice2'];
-    $choices[3] = $_POST['choice3'];
-    $choices[4] = $_POST['choice4'];
-
-    // $description = (filter_input(INPUT_POST, 'description', FILTER_SANITIZE_STRING));
-    // $answerOne = (filter_input(INPUT_POST, 'answerOne', FILTER_SANITIZE_STRING));
-    // $answerTwo = (filter_input(INPUT_POST, 'answerTwo', FILTER_SANITIZE_STRING));
-    // $answerThree = (filter_input(INPUT_POST, 'answerThree', FILTER_SANITIZE_STRING));
-    // $answerFour = (filter_input(INPUT_POST, 'answerFour', FILTER_SANITIZE_STRING));
-    // $correctAnswer = (filter_input(INPUT_POST, 'correctAnswer', FILTER_SANITIZE_STRING));
-    // $topic = (filter_input(INPUT_POST, 'topic', FILTER_SANITIZE_STRING));
+    $tip = (filter_input(INPUT_POST, 'tip', FILTER_SANITIZE_STRING));
 
     // Error checking variables
-    // $error = false;
-    // $descriptionError;
-    // $answerError;
-    // $correctAnswerError;
-    // $topicError;
+    $error = false;
+    $descriptionError;
+    $answerError;
+    $correctAnswerError;
+    $topicError;
 
 
-
-    $sql = "INSERT INTO question (question_number, description, topic)
-            VALUES( '$question_number', '$question_text', '$topic')";
+    $sql = "INSERT INTO questions (description, answer_one, answer_two, answer_three, answer_four, correct_answer, topic, tip)
+            VALUES( :description, :answerOne, :answerTwo, :answerThree, :answerFour, :correctAnswer, :topic, :tip)";
 
     $stmt = $pdo->prepare($sql);
 
-    $success = $stmt->execute();
+    $success = $stmt->execute
+    ([
+      'description' => $description,
+      'answerOne' => $answerOne,
+      'answerTwo' => $answerTwo,
+      'answerThree' => $answerThree,
+      'answerFour' => $answerFour,
+      'correctAnswer' => $correctAnswer,
+      'topic' => $topic,
+      'tip' => $tip
+    ]);
 
     if ($success){
-      foreach ($choices as $choice => $value) {
-        if ($value != '') {
-          if ($correct_choice == $choice) {
-            $is_correct = 1;
-          } else {
-            $is_correct = 0;
-          }
-
-          $sql = "INSERT INTO choice (question_number, is_correct, description)
-                  VALUES( '$question_number', '$is_correct', '$value')";
-
-          $stmt = $pdo->prepare($sql);
-
-          $success = $stmt->execute(array());
-
-          // $query = "INSERT INTO choice (question_number, is_correct, description)
-					// 		VALUES (:question_number, :is_correct, :$value)";
-          //
-					// //Run query
-					// $insert_row = $pdo->query($query) or die($mysqli->error.__LINE__);
-
-          // $count = $query->rowCount();
-          // if($count > 0)
-          // {
-          //   echo "Insert Successful";
-          //   header('Location: ../View/question-form.php?error=Success.');
-          // }
-          // else
-          // {
-          //   echo "Insert Failed";
-          //   echo $query -> errorInfo()[2];
-          // }
-
-          if ($success){
-            echo "Insert Successful";
-            header('Location: ../View/question-form.php?error=Success.');
-          } else {
-            echo "Insert Failed";
-            echo $query -> errorInfo()[2];
-          }
-        }
-      }
+      echo "Insert Successful";
+      header('Location: ../View/question-form.php?error=Success.');
+    } else {
+      echo "Insert Failed";
+      echo $query -> errorInfo()[2];
     }
-  }
-
-
-
-  // if($error == true) // An error has occured
-  // {
-  //   $errorString = $descriptionError.$answerError.$correctAnswerError.$topicError;
-  //   header('Location: ../View/question-form.php?error='.$errorString);
-  // }
-  // else // Continue
-  // {
-    // Create SQL Template
-    // $query = $pdo->prepare
-    // ("
-    // INSERT INTO question (description, answer_one, answer_two, answer_three, answer_four, correct_answer, topic)
-    // VALUES( :description, :answerOne, :answerTwo, :answerThree, :answerFour, :correctAnswer, :topic)
-    // ");
-
-    // $success = $query->execute
-    // ([
-    //   'description' => $description,
-    //   'answerOne' => $answerOne,
-    //   'answerTwo' => $answerTwo,
-    //   'answerThree' => $answerThree,
-    //   'answerFour' => $answerFour,
-    //   'correctAnswer' => $correctAnswer,
-    //   'topic' => $topic
-    // ]);
-
-    // $success = $query->execute
-    // ([
-    //   'question_number' => $question_number,
-    //   'question_text' => $question_text,
-    //   'topic' => $topic
-    // ]);
-
 
   }
+}
 
-  function retrieveTotalQuestions(){
+function retrieveTotalQuestions(){
     require 'db-connection.php';
 
     // $sql = "SELECT * FROM question ORDER BY question_id DESC LIMIT 0, 1";

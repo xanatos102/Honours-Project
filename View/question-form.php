@@ -12,55 +12,51 @@ include 'session.php';
 <title>Question Form</title>
 <body>
 
-<div class="container">
-
-  <h1 class="text-center mt-4">Add Question</h1>
+<div class="container mt-5">
+  <div class="jumbotron">
+  <h1 class="text-center">Add Question</h1>
   <form class="form-group needs-validation" action="../Controller/attempt-create-question.php" method="POST" novalidate>
     <div class="form-group">
-      <label for="question_number">Question Number:</label>
-      <input type="number" class="form-control" value="<?php echo $nextQuestionNo; ?>" name="question_number" readonly/>
-    </div>
-    <div class="form-group">
-      <label for="question_text">Question Text: (Required)</label>
-      <textarea class="form-control" id="question_text" name="question_text" placeholder="Question text" rows="3" required></textarea>
+      <label for="description">Question Description:</label>
+      <textarea class="form-control" id="description" name="description" placeholder="Question Description" rows="3" required></textarea>
       <div class="invalid-feedback">
         You cannot Leave This field Empty.
       </div>
     </div>
     <div class="form-group">
-      <label for="choice1">Choice #1: (Required)</label>
-      <input type="text" class="form-control" id="choice1" name="choice1" placeholder="Choice one" required>
+      <label for="answerOne">Answer #1:</label>
+      <input type="text" class="form-control" id="answerOne" name="answerOne" placeholder="Answer One" required>
       <div class="invalid-feedback">
         You cannot Leave This field Empty.
       </div>
     </div>
     <div class="form-group">
-      <label for="choice2">Choice #2: (Required)</label>
-      <input type="text" class="form-control" id="choice2" name="choice2" placeholder="Choice two" required>
+      <label for="answerTwo">Answer #2:</label>
+      <input type="text" class="form-control" id="answerTwo" name="answerTwo" placeholder="Answer Two" required>
       <div class="invalid-feedback">
         You cannot Leave This field Empty.
       </div>
     </div>
     <div class="form-group">
-      <label for="choice3">Choice #3: </label>
-      <input type="text" class="form-control" id="choice3" name="choice3" placeholder="Choice three">
+      <label for="answerThree">Answer #3:</label>
+      <input type="text" class="form-control" id="answerThree" name="answerThree" placeholder="Answer Three">
+      <div class="invalid-feedback">
+        You cannot Leave This field Empty.
+      </div>
     </div>
     <div class="form-group">
-      <label for="choice4">Choice #4: </label>
-      <input type="text" class="form-control" id="choice4" name="choice4" placeholder="Choice four">
+      <label for="answerFour">Answer #4:</label>
+      <input type="text" class="form-control" id="answerFour" name="answerFour" placeholder="Answer Four">
+      <div class="invalid-feedback">
+        You cannot Leave This field Empty.
+      </div>
     </div>
     <div class="form-group">
-      <label for="correct_choice">Correct Choice Number: (Required)</label>
-      <select class="form-control" id="correct_choice" name="correct_choice" required>
-        <option selected>Choose...</option>
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
-        <div class="invalid-feedback">
-          You cannot Leave This field Empty.
-        </div>
-      </select>
+      <label for="correctAnswer">Correct Answer:</label>
+      <input type="text" class="form-control" id="correctAnswer" name="correctAnswer" placeholder="Copy and paste answer here">
+      <div class="invalid-feedback">
+        You cannot Leave This field Empty.
+      </div>
     </div>
     <div class="form-group">
       <label for="topic">Topic: (Required)</label>
@@ -69,7 +65,14 @@ include 'session.php';
         You cannot Leave This field Empty.
       </div>
     </div>
-    <button type="submit" id="submit_question" name="submit_question" class="btn btn-secondary">Submit</button>
+    <div class="form-group">
+      <label for="tip">Tip: (Required)</label>
+      <textarea class="form-control" id="tip" name="tip" placeholder="Some flavour text like a hint to the correct answer or a fact (e.g. Did you know oranges are orange?)" rows="3" required></textarea>
+      <div class="invalid-feedback">
+        You cannot Leave This field Empty.
+      </div>
+    </div>
+    <button type="submit" id="submit_question" name="submit_question" class="btn btn-success">Submit</button>
   </form>
 
   <?php
@@ -81,7 +84,7 @@ include 'session.php';
     echo "<h3 style='color:red;'>$error</h3>";
   }
   ?>
-
+</div>
 </div>
 <!-- </footer> -->
     <?php include 'footer.php'; ?>

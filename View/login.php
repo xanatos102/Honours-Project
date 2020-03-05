@@ -15,8 +15,8 @@
 </head>
 <body>
 
-<div class="container">
-
+<div class="container mt-4">
+<div class="jumbotron">
   <h1 class="text-center mt-4">Admin Login</h1>
 
   <?php
@@ -43,9 +43,9 @@
           You cannot Leave This field Empty.
         </div>
       </div>
-      <button type="submit" id="adminlogin" name="adminLogin" class="btn btn-secondary">Log In</button>
+      <button type="submit" id="adminlogin" name="adminLogin" class="btn btn-success">Log In</button>
     </form>
-
+</div>
 </div>
 <!-- <footer> -->
       <?php include 'footer.php'; ?>

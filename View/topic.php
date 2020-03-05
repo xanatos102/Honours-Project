@@ -21,7 +21,7 @@
 <title>Honours Project - Home</title>
 <body>
 
-  <div class="container" style="margin-top: 2rem;">
+  <div class="container mt-5">
 
     <?php
 
