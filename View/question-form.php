@@ -6,6 +6,7 @@ include 'session.php';
 <!-- <head> -->
 <?php
     include 'header.php';
+    include '../Controller/attempt-retrieve-all-topics.php';
 ?>
 <!-- </head> -->
 <title>Question Form</title>
@@ -59,10 +60,12 @@ include 'session.php';
     </div>
     <div class="form-group">
       <label for="topic">Topic: (Required)</label>
-      <input type="text" class="form-control" id="topic" name="topic" placeholder="Topic (e.g. Malware, Phishing.)" required>
-      <div class="invalid-feedback">
-        You cannot Leave This field Empty.
-      </div>
+      <select class="custom-select" name="topic">
+        <option selected>Choose topic...</option>
+      <?php for ($i=0; $i < sizeof($topicArray); $i++){
+        echo "<option value='".$topicArray[$i]->title."'>".$topicArray[$i]->title."</option>";
+      }?>
+      </select>
     </div>
     <div class="form-group">
       <label for="tip">Tip: (Required)</label>

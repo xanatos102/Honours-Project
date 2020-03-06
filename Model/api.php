@@ -258,7 +258,6 @@ function createNewQuestion(){
     $correctAnswerError;
     $topicError;
 
-
     $sql = "INSERT INTO questions (description, answer_one, answer_two, answer_three, answer_four, correct_answer, topic, tip)
             VALUES( :description, :answerOne, :answerTwo, :answerThree, :answerFour, :correctAnswer, :topic, :tip)";
 
