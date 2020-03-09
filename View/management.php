@@ -19,7 +19,7 @@ include 'header.php';
         <a href="question-form.php" class="btn btn-success btn-lg btn-block">Add Question</a>
       </div>
       <div class="col-sm-6">
-        <a href="" class="btn btn-success btn-lg btn-block">Update Question</a>
+        <a href="update-question.php" class="btn btn-success btn-lg btn-block">Update Question</a>
       </div>
     </div>
     <br>

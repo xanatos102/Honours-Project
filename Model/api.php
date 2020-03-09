@@ -79,6 +79,54 @@ function retrieveQuestions($topic){
   }
 }
 
+function getAllQuestions(){
+
+  require_once "db-connection.php";
+
+  $query = $pdo->prepare
+  ("
+    SELECT * FROM questions
+  ");
+
+  $success = $query->execute();
+
+  if ($success && $query->rowCount() > 0)
+  {
+    $row = $query->fetchAll();
+    return json_encode($row);
+  }
+  else
+  {
+    echo "Unable to find questions";
+  }
+
+}
+
+function getQuestionById($questionId){
+
+  require 'db-connection.php';
+
+  $query = $pdo->prepare
+  ("
+  SELECT * FROM questions WHERE id = :questionid LIMIT 1
+  ");
+
+  $success = $query->execute
+  ([
+    'questionid' => $questionId
+  ]);
+
+  if($success && $query->rowCount() > 0)
+  {
+    $row = $query->fetch();
+    return json_encode($row);
+  }
+  else
+  {
+    echo "Unable to find topic";
+  }
+}
+
 // Insert credentials for new admins.
 function registerAccount(){
 

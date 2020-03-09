@@ -3,7 +3,7 @@
     Description:
     Author: Aaron Hay
  */
-Include '../Model/api.php';
+include '../Model/api.php';
 
 $topicId = $_GET['id'];
 $fileError = "";
