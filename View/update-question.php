@@ -1,9 +1,8 @@
 <?php
-
 /*
     Description: User interface used to manage and alter movies listed on the site.
 
-    Author: Brad Mair, David McRae
+    Author: Aaron Hay
 */
 include 'session.php';
 
@@ -38,7 +37,7 @@ echo "
     <h3>Update Questions</h3>
   </div>";
 
-if (isset($_GET['id']))
+if (isset($_GET['id']) && $_GET['option'] == 'alter')
 {
   $questionIndex = $_GET['id'];
   include '../Controller/attempt-retrieve-question-id.php';
@@ -103,28 +102,42 @@ if (isset($_GET['id']))
         You cannot Leave This field Empty.
       </div>
     </div>';
-    echo "<button class='form-control' type='submit' name='update'>Update Question</button>
+    echo "<button class='form-control btn btn-success' type='submit' name='update'>Update Question</button>
       </div>
       </form>";
-}
-else
-{
+
+} elseif (isset($_GET['id']) && $_GET['option'] == 'delete') {
+
+  $questionIndex = $_GET['id'];
+  include '../Controller/attempt-retrieve-question-id.php';
+
   echo "
-      <div class='row'>
-            <div class='col-md-4'>
-                <form method='POST' action='update-question.php'>
-                    <select class='form-control' name='ordering' onchange='this.form.submit()'>
-                        <option value='placeholder'>Sort By ...</option>
-                        <option value='0'>ID (First to Last)</option>
-                        <option value='1'>ID (Last to First)</option>
-                        <option value='2'>Topic (Ascending)</option>
-                        <option value='3'>Topic (Descending)</option>
-                    </select>
-                    <noscript><input type='submit' value ='Sort By'></noscript>
-                </form>
-            </div>
-        </div>
+  <form class='form-group needs-validation' method='POST' action='../Controller/attempt-remove-question-by-id.php?id=".$questionIndex."' novalidate>
+    <h1>Warning!</h1>
+    <p>You are about to delete a question in the database, are you sure you wish to continue?</p>
+    <a class='btn btn-danger btn-block' href='update-question.php'>No</a>
+    <button class='form-control btn btn-success mt-3' type='submit' name='delete'>Yes</button>
+  </form>";
+
+} else {
+
+  echo "
+  <div class='row'>
+    <div class='col-md-4'>
+        <form method='POST' action='update-question.php'>
+            <select class='form-control' name='ordering' onchange='this.form.submit()'>
+                <option value='placeholder'>Sort By ...</option>
+                <option value='0'>ID (First to Last)</option>
+                <option value='1'>ID (Last to First)</option>
+                <option value='2'>Topic (Ascending)</option>
+                <option value='3'>Topic (Descending)</option>
+            </select>
+            <noscript><input type='submit' value ='Sort By'></noscript>
+        </form>
+    </div>
+  </div>
   ";
+
   echo "
   <table class='table border border-dark text-center mt-4'>
     <thead class='thead-dark'>
@@ -144,8 +157,8 @@ else
         echo "<td>".$questionArray[$i]->id."</td>";
         echo "<td class='text-left'>".$questionArray[$i]->description."</td>";
         echo "<td class='text-left'>".$questionArray[$i]->topic."</td>";
-        echo "<td><a class='btn btn-success' href='?id=".$questionArray[$i]->id."'>Alter</a></td>";
-        echo "<td><a class='btn btn-danger' href='?id=".$questionArray[$i]->id."'>Delete</a></td>";
+        echo "<td><a class='btn btn-success' href='?id=".$questionArray[$i]->id."&option=alter'>Alter</a></td>";
+        echo "<td><a class='btn btn-danger' href='?id=".$questionArray[$i]->id."&option=delete'>Delete</a></td>";
         echo "</tr>";
     }
     echo "</table>";

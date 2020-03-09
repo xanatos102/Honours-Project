@@ -79,6 +79,7 @@ function retrieveQuestions($topic){
   }
 }
 
+// Retrieve all questions from database
 function getAllQuestions(){
 
   require_once "db-connection.php";
@@ -102,6 +103,7 @@ function getAllQuestions(){
 
 }
 
+// Retrieve question from database based on ID set by user
 function getQuestionById($questionId){
 
   require 'db-connection.php';
@@ -126,6 +128,61 @@ function getQuestionById($questionId){
     echo "Unable to find topic";
   }
 }
+
+//Delete Movie from database
+function removeQuestionById($questionId)
+{
+  require 'db-connection.php';
+
+  $query = $pdo->prepare
+  (
+    "DELETE FROM questions WHERE id = :questionid"
+  );
+
+  $success = $query->execute
+  ([
+    'questionid' => $questionId
+  ]);
+
+  if($success && $query->rowCount() > 0) {
+
+    header('location: ../View/update-question.php');
+    echo "Question Removed";
+
+  } else {
+
+    header('location: ../View/update-question.php?error=FAILED');
+    echo "Delete failed!";
+
+  }
+}
+
+// function updateQuestionById($questionId)
+// {
+//   require 'db-connection.php';
+//
+//   $query = $pdo->prepare
+//   (
+//     "UPDATE questions WHERE id = :questionid"
+//   );
+// 
+//   $success = $query->execute
+//   ([
+//     'questionid' => $questionId
+//   ]);
+//
+//   if($success && $query->rowCount() > 0) {
+//
+//     header('location: ../View/update-question.php');
+//     echo "Question Removed";
+//
+//   } else {
+//
+//     header('location: ../View/update-question.php?error=FAILED');
+//     echo "Delete failed!";
+//
+//   }
+// }
 
 // Insert credentials for new admins.
 function registerAccount(){
@@ -330,7 +387,6 @@ function createNewQuestion(){
       echo "Insert Failed";
       echo $query -> errorInfo()[2];
     }
-
   }
 }
 

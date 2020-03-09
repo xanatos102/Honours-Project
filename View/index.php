@@ -37,8 +37,8 @@
         echo '<div class="row">'; // Open row
       }
 
-      echo'<div class="col-sm-4">
-        <div class="card">
+      echo'<div class="col-sm-4 mt-4">
+        <div class="card border-secondary">
           <img src="' . $topicArray[$i]->image_link . '" class="card-img-top" alt="">
           <div class="card-body">
             <h2>' . $topicArray[$i]->title . '</h2>
