@@ -152,8 +152,8 @@ function getQuestionById($questionId){
 }
 
 // Remove question from database based on ID set by user
-function removeQuestionById($questionId)
-{
+function removeQuestionById($questionId){
+
   require 'db-connection.php';
 
   $query = $pdo->prepare
@@ -180,8 +180,8 @@ function removeQuestionById($questionId)
 }
 
 // Alter question in database based on ID set by user
-function updateQuestionById($questionId)
-{
+function updateQuestionById($questionId){
+  
   require 'db-connection.php';
 
   $description = (filter_input(INPUT_POST, 'description', FILTER_SANITIZE_STRING));
