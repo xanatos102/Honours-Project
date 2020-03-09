@@ -46,42 +46,42 @@ if (isset($_GET['id']) && $_GET['option'] == 'alter')
 
   echo '<div class="form-group">
     <label for="description">Question Description:</label>
-    <textarea class="form-control" id="description" name="description" placeholder="'.$questionArray->description.'" rows="3" required></textarea>
+    <input type="text" class="form-control" id="description" name="description" value="'.$questionArray->description.'">
     <div class="invalid-feedback">
       You cannot Leave This field Empty.
     </div>
     </div>
     <div class="form-group">
       <label for="answerOne">Answer #1:</label>
-      <input type="text" class="form-control" id="answerOne" name="answerOne" placeholder="'.$questionArray->answer_one.'" required>
+      <input type="text" class="form-control" id="answerOne" name="answerOne" value="'.$questionArray->answer_one.'" required>
       <div class="invalid-feedback">
         You cannot Leave This field Empty.
       </div>
     </div>
     <div class="form-group">
       <label for="answerTwo">Answer #2:</label>
-      <input type="text" class="form-control" id="answerTwo" name="answerTwo" placeholder="'.$questionArray->answer_two.'" required>
+      <input type="text" class="form-control" id="answerTwo" name="answerTwo" value="'.$questionArray->answer_two.'" required>
       <div class="invalid-feedback">
         You cannot Leave This field Empty.
       </div>
     </div>
     <div class="form-group">
       <label for="answerThree">Answer #3:</label>
-      <input type="text" class="form-control" id="answerThree" name="answerThree" placeholder="'.$questionArray->answer_three.'">
+      <input type="text" class="form-control" id="answerThree" name="answerThree" value="'.$questionArray->answer_three.'">
       <div class="invalid-feedback">
         You cannot Leave This field Empty.
       </div>
     </div>
     <div class="form-group">
       <label for="answerFour">Answer #4:</label>
-      <input type="text" class="form-control" id="answerFour" name="answerFour" placeholder="'.$questionArray->answer_four.'">
+      <input type="text" class="form-control" id="answerFour" name="answerFour" value="'.$questionArray->answer_four.'">
       <div class="invalid-feedback">
         You cannot Leave This field Empty.
       </div>
     </div>
     <div class="form-group">
       <label for="correctAnswer">Correct Answer:</label>
-      <input type="text" class="form-control" id="correctAnswer" name="correctAnswer" placeholder="'.$questionArray->correct_answer.'">
+      <input type="text" class="form-control" id="correctAnswer" name="correctAnswer" value="'.$questionArray->correct_answer.'">
       <div class="invalid-feedback">
         You cannot Leave This field Empty.
       </div>
@@ -97,7 +97,7 @@ if (isset($_GET['id']) && $_GET['option'] == 'alter')
     </div>
     <div class="form-group">
       <label for="tip">Tip: (Required)</label>
-      <textarea class="form-control" id="tip" name="tip" placeholder="'.$questionArray->tip.'" rows="3" required></textarea>
+      <input type="text" class="form-control" id="tip" name="tip" value="'.$questionArray->tip.'">
       <div class="invalid-feedback">
         You cannot Leave This field Empty.
       </div>
@@ -127,8 +127,8 @@ if (isset($_GET['id']) && $_GET['option'] == 'alter')
         <form method='POST' action='update-question.php'>
             <select class='form-control' name='ordering' onchange='this.form.submit()'>
                 <option value='placeholder'>Sort By ...</option>
-                <option value='0'>ID (First to Last)</option>
-                <option value='1'>ID (Last to First)</option>
+                <option value='0'>ID (Last to First)</option>
+                <option value='1'>ID (First to Last)</option>
                 <option value='2'>Topic (Ascending)</option>
                 <option value='3'>Topic (Descending)</option>
             </select>

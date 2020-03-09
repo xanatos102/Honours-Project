@@ -84,9 +84,31 @@ function getAllQuestions(){
 
   require_once "db-connection.php";
 
+  $sortOrder = 'ORDER BY id desc';
+    if (filter_input(INPUT_POST, "ordering", FILTER_SANITIZE_STRING))
+    {
+        $ordering = filter_input (INPUT_POST, "ordering", FILTER_SANITIZE_STRING);
+        if ($ordering == "0")
+        {
+            $sortOrder = 'ORDER BY id desc';
+        }
+        elseif ($ordering == "1")
+        {
+            $sortOrder = 'ORDER BY id asc';
+        }
+        elseif ($ordering == "2")
+        {
+            $sortOrder = 'ORDER BY topic asc';
+        }
+        elseif ($ordering == "3")
+        {
+            $sortOrder = 'ORDER BY topic desc';
+        }
+    }
+
   $query = $pdo->prepare
   ("
-    SELECT * FROM questions
+    SELECT * FROM questions $sortOrder
   ");
 
   $success = $query->execute();
@@ -129,7 +151,7 @@ function getQuestionById($questionId){
   }
 }
 
-//Delete Movie from database
+// Remove question from database based on ID set by user
 function removeQuestionById($questionId)
 {
   require 'db-connection.php';
@@ -157,32 +179,59 @@ function removeQuestionById($questionId)
   }
 }
 
-// function updateQuestionById($questionId)
-// {
-//   require 'db-connection.php';
-//
-//   $query = $pdo->prepare
-//   (
-//     "UPDATE questions WHERE id = :questionid"
-//   );
-// 
-//   $success = $query->execute
-//   ([
-//     'questionid' => $questionId
-//   ]);
-//
-//   if($success && $query->rowCount() > 0) {
-//
-//     header('location: ../View/update-question.php');
-//     echo "Question Removed";
-//
-//   } else {
-//
-//     header('location: ../View/update-question.php?error=FAILED');
-//     echo "Delete failed!";
-//
-//   }
-// }
+// Alter question in database based on ID set by user
+function updateQuestionById($questionId)
+{
+  require 'db-connection.php';
+
+  $description = (filter_input(INPUT_POST, 'description', FILTER_SANITIZE_STRING));
+  $answerOne = (filter_input(INPUT_POST, 'answerOne', FILTER_SANITIZE_STRING));
+  $answerTwo = (filter_input(INPUT_POST, 'answerTwo', FILTER_SANITIZE_STRING));
+  $answerThree = (filter_input(INPUT_POST, 'answerThree', FILTER_SANITIZE_STRING));
+  $answerFour = (filter_input(INPUT_POST, 'answerFour', FILTER_SANITIZE_STRING));
+  $correctAnswer = (filter_input(INPUT_POST, 'correctAnswer', FILTER_SANITIZE_STRING));
+  $topic = (filter_input(INPUT_POST, 'topic', FILTER_SANITIZE_STRING));
+  $tip = (filter_input(INPUT_POST, 'tip', FILTER_SANITIZE_STRING));
+
+  $query = $pdo->prepare
+  ("
+    UPDATE questions
+    SET
+    description = :description,
+    answer_one = :answerOne,
+    answer_two = :answerTwo,
+    answer_three = :answerThree,
+    answer_four = :answerFour,
+    correct_answer = :correctAnswer,
+    topic = :topic,
+    tip = :tip
+    WHERE id = ".$questionId."
+  ");
+
+  $success = $query->execute
+  ([
+    'description' => $description,
+    'answerOne' => $answerOne,
+    'answerTwo' => $answerTwo,
+    'answerThree' => $answerThree,
+    'answerFour' => $answerFour,
+    'correctAnswer' => $correctAnswer,
+    'topic' => $topic,
+    'tip' => $tip
+  ]);
+
+  if($success && $query->rowCount() > 0) {
+
+    $validError = "Success";
+    header('location: ../View/update-question.php?error='.$validError);
+
+  } else {
+
+    $invalidError = "Insert Failed";
+    header('location: ../View/update-question.php?error='.$invalidError);
+
+  }
+}
 
 // Insert credentials for new admins.
 function registerAccount(){
