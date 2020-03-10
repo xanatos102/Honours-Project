@@ -1,5 +1,12 @@
 <?php
 include 'session.php';
+
+if(!isset($_SESSION['username']))
+{
+  // Customer has tried to access this page
+  header("Location: index.php?error=ACCESS DENIED");
+}
+
 ?>
 <!DOCTYPE html>
 <html>

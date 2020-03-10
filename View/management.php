@@ -1,6 +1,13 @@
 <?php
 include 'session.php';
 include 'header.php';
+
+if(!isset($_SESSION['username']))
+{
+  // Customer has tried to access this page
+  header("Location: index.php?error=ACCESS DENIED");
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -32,7 +39,7 @@ include 'header.php';
         <a href="" class="btn btn-primary btn-lg btn-block">Update Topic</a>
       </div>
     </div>
-    <a class="btn btn-secondary btn-lg btn-block mt-5" href="login.php" role="button">Logout</a>
+    <a class="btn btn-secondary btn-lg btn-block mt-5" href="../Controller/attempt-logout.php" role="button">Logout</a>
   </div>
 </div>
 

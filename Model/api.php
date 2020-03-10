@@ -181,7 +181,7 @@ function removeQuestionById($questionId){
 
 // Alter question in database based on ID set by user
 function updateQuestionById($questionId){
-  
+
   require 'db-connection.php';
 
   $description = (filter_input(INPUT_POST, 'description', FILTER_SANITIZE_STRING));
@@ -387,6 +387,15 @@ function login(){
       header('location: ../View/login.php?error='.$invalidError);
     }
   }
+}
+
+function logout(){
+
+  session_start() ;
+  session_destroy();
+
+  header('location: ../View/login.php');
+
 }
 
 // Insert new quiz questions and answers into quiz table.
