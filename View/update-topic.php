@@ -42,8 +42,12 @@ if (isset($_GET['id']) && $_GET['option'] == 'alter')
   $topicIndex = $_GET['id'];
   include '../Controller/attempt-retrieve-topic-by-id.php';
   echo "<a class='btn btn-secondary' href='update-topic.php'>Return</a><br><br>";
-  echo "<form class='form-group needs-validation' method='POST' action='../Controller/attempt-update-topic-by-id.php?id=".$topicIndex."' novalidate>";
+  echo "<form class='form-group needs-validation' method='POST' enctype='multipart/form-data' action='../Controller/attempt-update-topic-by-id.php?id=".$topicIndex."' novalidate>";
   echo '<div class="form-group">
+          <label for="index">Topic ID:</label>
+          <input type="text" class="form-control" name="index" value="'.$topicArray->id.'" readonly/>
+        </div>
+        <div class="form-group">
           <label for="title">Title:</label>
           <input type="text" class="form-control" placeholder="Title" name="title" value="'.$topicArray->title.'" readonly/>
         </div>

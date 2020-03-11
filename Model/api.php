@@ -27,7 +27,7 @@ function getAllTopics(){
   }
 }
 
-// Display topic information by ID
+// Retrieve topic from database based on ID set
 function getTopicById($topicId){
 
   require 'db-connection.php';
@@ -53,6 +53,7 @@ function getTopicById($topicId){
   }
 }
 
+// Remove topic from database based on ID set
 function removeTopicById($topicId){
 
   require 'db-connection.php';
@@ -78,9 +79,9 @@ function removeTopicById($topicId){
     echo "Delete failed!";
 
   }
-
 }
 
+// Alter topic in database based on ID set
 function updateTopicById($topicId){
 
   // Establish connection to database
@@ -89,8 +90,10 @@ function updateTopicById($topicId){
   // Check button from topic form was pressed
   if (isset($_POST['update_topic'])) {
 
-    $topicEncode = getTopicByID($topicId);
-    $topicDetails = json_decode($topicEncode);
+    $index = (filter_input(INPUT_POST, 'index', FILTER_SANITIZE_STRING));
+    $encodedTopic = getTopicByID($index);
+    $topicDetails = json_decode($encodedTopic);
+
     // Set image and file variables for processing
     $image = $_FILES['image_link'];
     $file = $_FILES['file_link'];
@@ -134,8 +137,6 @@ function updateTopicById($topicId){
 
     if ($fileError === 0){
 
-
-
       $fileExt = explode('.', $fileName);
       $fileActualExt = strtolower(end($fileExt));
       $allowedFileTypes = array('txt', 'html', 'docx');
@@ -158,57 +159,57 @@ function updateTopicById($topicId){
 
     if (isset($newImage) || isset($oldImage)){
 
-    if ($imageError === 0){
+      if ($imageError === 0){
 
-      // Checks image size is below stated value
-      if ($imageSize < 1000000) {
+        // Checks image size is below stated value
+        if ($imageSize < 1000000) {
 
-              if (!isset($oldImage))
-              {
-                try
-                {
-                  unlink($topicDetails->image_link);
-                }
-                catch (Exception $e)
-                {
-                  $invalidError = ":FATAL ERROR REMOVING OLD IMAGE";
-                  header('location: ../View/update-topic.php?error='.$invalidError);
-                }
-                // Gives the image a unique id to stop overwriting of files with same name
-                $imageNameNew = uniqid('', true) . "." . $imageActualExt;
-                // Determines image location
-                $imageDestination = '../View/images/' . $imageNameNew;
-                // Sends image to specified location
-                move_uploaded_file($imageTmpName, $imageDestination);
+          if (!isset($oldImage))
+          {
+            try
+            {
+              unlink($topicDetails->image_link);
+            }
+            catch (Exception $e)
+            {
+              $invalidError = ":FATAL ERROR REMOVING OLD IMAGE";
+              header('location: ../View/update-topic.php?error='.$invalidError);
+            }
+            // Gives the image a unique id to stop overwriting of files with same name
+            $imageNameNew = uniqid('', true) . "." . $imageActualExt;
+            // Determines image location
+            $imageDestination = '../View/images/' . $imageNameNew;
+            // Sends image to specified location
+            move_uploaded_file($imageTmpName, $imageDestination);
 
-              } else {
-                $imageDestination = $oldImage;
-              }
+          } else {
+            $imageDestination = $oldImage;
+          }
 
-              if (isset($newFile) || isset($oldFile)){
-              // Checks there are no errors
-              if ($fileError === 0) {
-                // Checks image size is below stated value
-                if ($fileSize < 3000000) {
+          if (isset($newFile) || isset($oldFile)){
+            // Checks there are no errors
+            if ($fileError === 0) {
+              // Checks image size is below stated value
+              if ($fileSize < 3000000) {
 
-                  if (!isset($oldFile)){
+                if (!isset($oldFile)){
 
-                    try
-                    {
-                      unlink($topicDetails->file_link);
-                    }
-                    catch (Exception $e)
-                    {
-                      $invalidError = ":FATAL ERROR REMOVING OLD FILE";
-                      header('location: ../View/update-topic.php?error='.$invalidError);
-                    }
-                    // Determines file location
-                    $fileDestination = '../View/docs/' . $fileName;
-                    // Sends file to specified location
-                    move_uploaded_file($fileTmpName, $fileDestination);
-                  } else {
-                    $fileDestination = $oldFile;
+                  try
+                  {
+                    unlink($topicDetails->file_link);
                   }
+                  catch (Exception $e)
+                  {
+                    $invalidError = ":FATAL ERROR REMOVING OLD FILE";
+                    header('location: ../View/update-topic.php?error='.$invalidError);
+                  }
+                  // Determines file location
+                  $fileDestination = '../View/docs/' . $fileName;
+                  // Sends file to specified location
+                  move_uploaded_file($fileTmpName, $fileDestination);
+                } else {
+                  $fileDestination = $oldFile;
+                }
 
                     // Once complete carry out the INSERT statement to database
                     $title = (filter_input(INPUT_POST, 'title', FILTER_SANITIZE_STRING));
@@ -250,7 +251,7 @@ function updateTopicById($topicId){
                       image_link = :image,
                       file_link = :file,
                       date = :date
-                      WHERE id = ".$topicId."
+                      WHERE id = ".$index."
                       ");
 
                       $success = $query->execute
@@ -278,33 +279,33 @@ function updateTopicById($topicId){
 
                     } // End of sql statement
 
+                  } else {
+                      $invalidError = "Your file is too large. Maximum file size is 3MB.";
+                      header('location: ../View/update-topic.php?error='.$invalidError);
+
+                  } // End of file size check
+
+                } else {
+                    $invalidError = "There was an error uploading your file!";
+                    header('location: ../View/update-topic.php?error='.$invalidError.$imageError.$fileError);
+                    var_dump($fileError);
+                    var_dump($imageError);
+                }
+              } // End of file upload error check
+
+            } else {
+                $invalidError = "Your image is too large. Maximum image size is 1MB.";
+                header('location: ../View/update-topic.php?error='.$invalidError);
+            } // End of image size check
+
           } else {
-              $invalidError = "Your file is too large. Maximum file size is 3MB.";
-              header('location: ../View/update-topic.php?error='.$invalidError);
-
-          } // End of file size check
-
-        } else {
-            $invalidError = "There was an error uploading your file!";
-            header('location: ../View/update-topic.php?error='.$invalidError.$imageError.$fileError);
-            var_dump($fileError);
-            var_dump($imageError);
-        }
-      } // End of file upload error check
-
-      } else {
-          $invalidError = "Your image is too large. Maximum image size is 1MB.";
-          header('location: ../View/update-topic.php?error='.$invalidError);
-      } // End of image size check
-
-    } else {
-        $invalidError = "There was an error uploading your image!";
-        header('location: ../View/update-topic.php?error='.$invalidError.$imageError.$fileError);
-        var_dump($imageError);
-        var_dump($fileError);
-    } // End of image upload error check
+              $invalidError = "There was an error uploading your image!";
+              header('location: ../View/update-topic.php?error='.$invalidError.$imageError.$fileError);
+              var_dump($imageError);
+              var_dump($fileError);
+            } // End of image upload error check
+    }
   }
-}
 }
 
 // Retrieve quiz data from the quiz table.
@@ -380,7 +381,7 @@ function getAllQuestions(){
 
 }
 
-// Retrieve question from database based on ID set by user
+// Retrieve question from database based on ID set
 function getQuestionById($questionId){
 
   require 'db-connection.php';
@@ -406,7 +407,7 @@ function getQuestionById($questionId){
   }
 }
 
-// Remove question from database based on ID set by user
+// Remove question from database based on ID set
 function removeQuestionById($questionId){
 
   require 'db-connection.php';
@@ -434,7 +435,7 @@ function removeQuestionById($questionId){
   }
 }
 
-// Alter question in database based on ID set by user
+// Alter question in database based on ID set
 function updateQuestionById($questionId){
 
   require 'db-connection.php';
@@ -650,7 +651,7 @@ function logout(){
   session_start() ;
   session_destroy();
 
-  header('location: ../View/login.php');
+  header('location: ../View/index.php');
 
 }
 
