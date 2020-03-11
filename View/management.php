@@ -36,7 +36,7 @@ if(!isset($_SESSION['username']))
         <a href="topic-form.php" class="btn btn-primary btn-lg btn-block">Create New Topic</a>
       </div>
       <div class="col-sm-6">
-        <a href="" class="btn btn-primary btn-lg btn-block">Update Topic</a>
+        <a href="update-topic.php" class="btn btn-primary btn-lg btn-block">Update Topic</a>
       </div>
     </div>
     <a class="btn btn-secondary btn-lg btn-block mt-5" href="../Controller/attempt-logout.php" role="button">Logout</a>

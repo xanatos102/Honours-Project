@@ -40,9 +40,9 @@ echo "
 if (isset($_GET['id']) && $_GET['option'] == 'alter')
 {
   $questionIndex = $_GET['id'];
-  include '../Controller/attempt-retrieve-question-id.php';
+  include '../Controller/attempt-retrieve-question-by-id.php';
   echo "<a class='btn btn-secondary' href='update-question.php'>Return</a><br><br>";
-  echo "<form class='form-group needs-validation' method='POST' action='../Controller/attempt-update-question.php?id=".$questionIndex."' novalidate>";
+  echo "<form class='form-group needs-validation' method='POST' action='../Controller/attempt-update-question-by-id.php?id=".$questionIndex."' novalidate>";
 
   echo '<div class="form-group">
     <label for="description">Question Description:</label>
@@ -109,7 +109,7 @@ if (isset($_GET['id']) && $_GET['option'] == 'alter')
 } elseif (isset($_GET['id']) && $_GET['option'] == 'delete') {
 
   $questionIndex = $_GET['id'];
-  include '../Controller/attempt-retrieve-question-id.php';
+  include '../Controller/attempt-retrieve-question-by-id.php';
 
   echo "
   <form class='form-group needs-validation' method='POST' action='../Controller/attempt-remove-question-by-id.php?id=".$questionIndex."' novalidate>

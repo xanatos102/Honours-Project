@@ -3,12 +3,12 @@
     Description:
     Author: Aaron Hay
  */
-include '../Model/api.php';
+include_once '../Model/api.php';
 
 $topicId = $_GET['id'];
 $fileError = "";
 
-$topic = displayTopicById($topicId);
+$topic = getTopicById($topicId);
 $topicArray = json_decode($topic);
 
 ?>

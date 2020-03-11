@@ -6,7 +6,7 @@
 ?>
 
 <?php
-  include '../Controller/attempt-retrieve-topic.php';
+  include '../Controller/attempt-retrieve-topic-by-id.php';
   include 'session.php';
 ?>
 

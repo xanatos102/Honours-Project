@@ -28,7 +28,7 @@ function getAllTopics(){
 }
 
 // Display topic information by ID
-function displayTopicById($topicId){
+function getTopicById($topicId){
 
   require 'db-connection.php';
 
@@ -53,10 +53,265 @@ function displayTopicById($topicId){
   }
 }
 
+function removeTopicById($topicId){
+
+  require 'db-connection.php';
+
+  $query = $pdo->prepare
+  (
+    "DELETE FROM topic WHERE id = :topicid"
+  );
+
+  $success = $query->execute
+  ([
+    'topicid' => $topicId
+  ]);
+
+  if($success && $query->rowCount() > 0) {
+
+    header('location: ../View/update-topic.php');
+    echo "Topic Removed";
+
+  } else {
+
+    header('location: ../View/update-topic.php?error=FAILED');
+    echo "Delete failed!";
+
+  }
+
+}
+
+function updateTopicById($topicId){
+
+  // Establish connection to database
+  require 'db-connection.php';
+
+  // Check button from topic form was pressed
+  if (isset($_POST['update_topic'])) {
+
+    $topicEncode = getTopicByID($topicId);
+    $topicDetails = json_decode($topicEncode);
+    // Set image and file variables for processing
+    $image = $_FILES['image_link'];
+    $file = $_FILES['file_link'];
+
+    $imageName = $_FILES['image_link']['name'];
+    $imageTmpName = $_FILES['image_link']['tmp_name'];
+    $imageSize = $_FILES['image_link']['size'];
+    $imageError = $_FILES['image_link']['error'];
+    $imageType = $_FILES['image_link']['type'];
+
+    $fileName = $_FILES['file_link']['name'];
+    $fileTmpName = $_FILES['file_link']['tmp_name'];
+    $fileSize = $_FILES['file_link']['size'];
+    $fileError = $_FILES['file_link']['error'];
+    $fileType = $_FILES['file_link']['type'];
+
+    if ($imageError === 0){
+
+      // Remove file extension and store in a variable
+      $imageExt = explode('.', $imageName);
+      // Force extension to be lowercase and store in a new variable for error checking
+      $imageActualExt = strtolower(end($imageExt));
+      // Set a variable with allowed image types
+      $allowedImageTypes = array('jpg', 'jpeg', 'png');
+
+      if (in_array($imageActualExt, $allowedImageTypes)) {
+
+        $newImage = True;
+
+      } else {
+
+        $invalidError = "You cannot upload images of this file type ( .jpg .jpeg .png ) are permitted";
+        header('location: ../View/update-topic.php?error='.$invalidError);
+
+      }
+
+    } else {
+
+      $oldImage = $topicDetails->image_link;
+    }
+
+    if ($fileError === 0){
+
+
+
+      $fileExt = explode('.', $fileName);
+      $fileActualExt = strtolower(end($fileExt));
+      $allowedFileTypes = array('txt', 'html', 'docx');
+
+      if (in_array($fileActualExt, $allowedFileTypes)) {
+
+        $newFile = True;
+
+      } else {
+
+        $invalidError = "You cannot upload files of this type ( .txt .html ) are permitted";
+        header('location: ../View/update-topic.php?error='.$invalidError);
+
+      }
+
+    } else {
+
+      $oldFile = $topicDetails->file_link;
+    }
+
+    if (isset($newImage) || isset($oldImage)){
+
+    if ($imageError === 0){
+
+      // Checks image size is below stated value
+      if ($imageSize < 1000000) {
+
+              if (!isset($oldImage))
+              {
+                try
+                {
+                  unlink($topicDetails->image_link);
+                }
+                catch (Exception $e)
+                {
+                  $invalidError = ":FATAL ERROR REMOVING OLD IMAGE";
+                  header('location: ../View/update-topic.php?error='.$invalidError);
+                }
+                // Gives the image a unique id to stop overwriting of files with same name
+                $imageNameNew = uniqid('', true) . "." . $imageActualExt;
+                // Determines image location
+                $imageDestination = '../View/images/' . $imageNameNew;
+                // Sends image to specified location
+                move_uploaded_file($imageTmpName, $imageDestination);
+
+              } else {
+                $imageDestination = $oldImage;
+              }
+
+              if (isset($newFile) || isset($oldFile)){
+              // Checks there are no errors
+              if ($fileError === 0) {
+                // Checks image size is below stated value
+                if ($fileSize < 3000000) {
+
+                  if (!isset($oldFile)){
+
+                    try
+                    {
+                      unlink($topicDetails->file_link);
+                    }
+                    catch (Exception $e)
+                    {
+                      $invalidError = ":FATAL ERROR REMOVING OLD FILE";
+                      header('location: ../View/update-topic.php?error='.$invalidError);
+                    }
+                    // Determines file location
+                    $fileDestination = '../View/docs/' . $fileName;
+                    // Sends file to specified location
+                    move_uploaded_file($fileTmpName, $fileDestination);
+                  } else {
+                    $fileDestination = $oldFile;
+                  }
+
+                    // Once complete carry out the INSERT statement to database
+                    $title = (filter_input(INPUT_POST, 'title', FILTER_SANITIZE_STRING));
+                    $author = (filter_input(INPUT_POST, 'author', FILTER_SANITIZE_STRING));
+                    $imageLink = $imageDestination;
+                    $fileLink = $fileDestination;
+                    $date = date("Y/m/d");
+
+                    // Initialise error variables
+                    $error = false;
+                    $topicError;
+                    $authorError;
+
+                    // Checks variable matches expression conditions
+                    if (!preg_match("/^[a-zA-Z0-9]*$/", $topic)) {
+                      $error = true;
+                      $topicError = ":Topic can only contain letters and numbers.";
+                    }
+
+                    // Checks variable matches expression conditions
+                    if (!preg_match("/^[a-zA-Z ]*$/",$author)) {
+                      $error = true;
+                      $authorError = ":Authors name can only contain letters.";
+                    }
+
+                    // Set error variable with appropriate errors
+                    if ($error == true) {
+                      $errorString = $topicError.$authorError;
+                      header('Location: ../View/update-topic.php?error='.$errorString);
+
+                    } else { // Once there are no errors process the sql statement
+
+                      $query = $pdo->prepare
+                      ("
+                      UPDATE topic
+                      SET
+                      title = :title,
+                      author = :author,
+                      image_link = :image,
+                      file_link = :file,
+                      date = :date
+                      WHERE id = ".$topicId."
+                      ");
+
+                      $success = $query->execute
+                      ([
+                        'title' => $title,
+                        'author' => $author,
+                        'image' => $imageLink,
+                        'file' => $fileLink,
+                        'date' => $date
+                      ]);
+
+                      $count = $query->rowCount();
+
+                      if($count > 0){
+
+                        $success = "Insert successful!";
+                        header('location: ../View/update-topic.php?success='.$success);
+
+                      } else {
+
+                        $invalidError = "Insert failed";
+                        header('location: ../View/update-topic.php?error='.$invalidError);
+
+                      }
+
+                    } // End of sql statement
+
+          } else {
+              $invalidError = "Your file is too large. Maximum file size is 3MB.";
+              header('location: ../View/update-topic.php?error='.$invalidError);
+
+          } // End of file size check
+
+        } else {
+            $invalidError = "There was an error uploading your file!";
+            header('location: ../View/update-topic.php?error='.$invalidError.$imageError.$fileError);
+            var_dump($fileError);
+            var_dump($imageError);
+        }
+      } // End of file upload error check
+
+      } else {
+          $invalidError = "Your image is too large. Maximum image size is 1MB.";
+          header('location: ../View/update-topic.php?error='.$invalidError);
+      } // End of image size check
+
+    } else {
+        $invalidError = "There was an error uploading your image!";
+        header('location: ../View/update-topic.php?error='.$invalidError.$imageError.$fileError);
+        var_dump($imageError);
+        var_dump($fileError);
+    } // End of image upload error check
+  }
+}
+}
+
 // Retrieve quiz data from the quiz table.
 function retrieveQuestions($topic){
+
   // Connect to database
-  require_once "db-connection.php";
+  require "db-connection.php";
 
   $query = $pdo->prepare
   ("
@@ -82,7 +337,7 @@ function retrieveQuestions($topic){
 // Retrieve all questions from database
 function getAllQuestions(){
 
-  require_once "db-connection.php";
+  require "db-connection.php";
 
   $sortOrder = 'ORDER BY id desc';
     if (filter_input(INPUT_POST, "ordering", FILTER_SANITIZE_STRING))
@@ -389,6 +644,7 @@ function login(){
   }
 }
 
+// Allow admins to log out of the system
 function logout(){
 
   session_start() ;

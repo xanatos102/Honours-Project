@@ -6,7 +6,7 @@
  */
 
 
-include '../Model/api.php';
+include_once '../Model/api.php';
 
 $topics = GetAllTopics();
 $topicArray = json_decode($topics);
