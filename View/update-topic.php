@@ -107,7 +107,7 @@ if (isset($_GET['id']) && $_GET['option'] == 'alter')
   echo "
   <div class='row'>
     <div class='col-md-4'>
-        <form method='POST' action='update-question.php'>
+        <form method='POST' action='update-topic.php'>
             <select class='form-control' name='ordering' onchange='this.form.submit()'>
                 <option value='placeholder'>Sort By ...</option>
                 <option value='0'>ID (Last to First)</option>

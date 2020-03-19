@@ -9,7 +9,38 @@ function getAllTopics(){
 
   require 'db-connection.php';
 
-  $sql = "SELECT * FROM topic";
+  $sortOrder = 'ORDER BY id desc';
+
+  if (filter_input(INPUT_POST, "ordering", FILTER_SANITIZE_STRING))
+  {
+      $ordering = filter_input (INPUT_POST, "ordering", FILTER_SANITIZE_STRING);
+      if ($ordering == "0")
+      {
+          $sortOrder = 'ORDER BY id desc';
+      }
+      elseif ($ordering == "1")
+      {
+          $sortOrder = 'ORDER BY id asc';
+      }
+      elseif ($ordering == "2")
+      {
+          $sortOrder = 'ORDER BY title asc';
+      }
+      elseif ($ordering == "3")
+      {
+          $sortOrder = 'ORDER BY title desc';
+      }
+      elseif ($ordering == "4")
+      {
+          $sortOrder = 'ORDER BY author asc';
+      }
+      elseif ($ordering == "5")
+      {
+          $sortOrder = 'ORDER BY author desc';
+      }
+  }
+
+  $sql = "SELECT * FROM topic $sortOrder";
 
   $stmt = $pdo->prepare($sql);
   $result = $stmt->fetch();
