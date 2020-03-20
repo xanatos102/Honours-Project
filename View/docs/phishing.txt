@@ -1,0 +1,17 @@
+<h1>What is Phishing?</h1>
+<p class="justify">Phishing is a type of internet fraud where the scammer sends email messages that appear to be from financial institutions or credit card companies that try to trick recipients into giving private information (i.e., usernames, passwords, account numbers, etc.). The scammer uses the information retrieved to steal the recipient's identity and/or money from their account.</p>
+<h1>How to Avoid Phishing Scams</h1>
+<ul class="justify">
+<li>Never click on a link within an email requesting that you enter your username, password, credit card number, etc.</li></br>
+<li>If you have any doubts about whether an email is real, contact the company directly to check on the authenticity of the email by using the phone number or email address on their website.</li></br>
+<li>Do not open any "fishy" emails that have misspellings, poor graphics, unusual or long URLs or emails which include a long cc list of other email addresses. Delete immediately.</li></br>
+<li>If you suspect an email is a phishing attempt, contact the company directly.</li></br>
+<li>Make sure that you have unique usernames and passwords for each account and website you regularly visit.</li></br>
+<li>Install an antivirus program and/or a browser that alerts users to phishing websites.</li>
+</ul>
+<h1>Example Phishing Attempts</h1>
+<ol class="justify">
+<li>A spam email that looks like it comes from your bank and says you must provide your pin number or your account will be closed.</li></br>
+<li>A spam email asking the user to update their username and passwords</li></br>
+<li>A Facebook member receives an email seemingly from Facebook, asking them to enter login details (on a replica of the Facebook homepage). This provides the phishers with the information needed to send emails to the person's friends to steal their identity or to infect their computer with viruses or spyware.</li>
+</ol>

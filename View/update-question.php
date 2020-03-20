@@ -139,7 +139,7 @@ if (isset($_GET['id']) && $_GET['option'] == 'alter')
   ";
 
   echo "
-  <table class='table border border-dark text-center mt-4'>
+  <table class='table table-dark table-striped text-center mt-4'>
     <thead class='thead-dark'>
         <tr>
           <th scope='col'>ID</th>

@@ -20,6 +20,12 @@ html, body
     font-size: 120% ;
 }
 
+.justify
+{
+  text-align: justify;
+  text-justify: inter-word;
+}
+
 .card
 {
   width:100%;
