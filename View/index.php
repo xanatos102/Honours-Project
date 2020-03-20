@@ -29,6 +29,10 @@
 
 <div class="container" style="margin-top: 2rem;">
 
+  <div class="jumbotron">
+    <h1>Welcome</h1>
+
+
   <?php
     for ($i=0; $i < sizeof($topicArray); $i++){
 
@@ -37,9 +41,13 @@
         echo '<div class="row">'; // Open row
       }
 
+      // border-secondary // give card border
+
       echo'<div class="col-sm-4 mt-4">
-        <div class="card border-secondary h-100">
-          <img src="' . $topicArray[$i]->image_link . '" class="card-img-top"  alt="">
+        <div class="card h-100">
+          <a href="topic.php?id=' . $topicArray[$i]->id . '">
+          <img src="' . $topicArray[$i]->image_link . '" class="card-img-top"  alt="Image to represent ' . $topicArray[$i]->title . '" style="height:210px">
+          </a>
           <div class="card-body">
             <h2>' . $topicArray[$i]->title . '</h2>
             <hr>
@@ -67,6 +75,7 @@
     echo '</div></div></div><br>';
    ?>
 
+</div>
 </div>
 
 <!-- <footer> -->
