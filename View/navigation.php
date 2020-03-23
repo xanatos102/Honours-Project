@@ -25,7 +25,7 @@
             <a class="nav-link" href="index.php">Home</a>
         </li>
         <li class="nav-item active">
-            <a class="nav-link" href="index.php">Terminology</a>
+            <a class="nav-link" href="terminology.php">Terminology</a>
         </li>
         <li class="nav-item active">
             <a class="nav-link" href="privacy-policy.php">Legislation</a>
