@@ -25,10 +25,13 @@
             <a class="nav-link" href="index.php">Home</a>
         </li>
         <li class="nav-item active">
-            <a class="nav-link" href="site-info.php">About</a>
+            <a class="nav-link" href="index.php">Terminology</a>
         </li>
         <li class="nav-item active">
-            <a class="nav-link" href="index.php">Terminology</a>
+            <a class="nav-link" href="privacy-policy.php">Legislation</a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="site-info.php">About</a>
         </li>
     </ul>
   </div>

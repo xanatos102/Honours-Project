@@ -27,11 +27,11 @@
 <title>Honours Project - Home</title>
 <body>
 
-<div class="container" style="margin-top: 2rem;">
+<div class="container mt-5">
 
   <div class="jumbotron">
-    <h1>Welcome</h1>
-
+    <h1 class="display-4">Welcome</h1>
+      <p>The Cyber Awareness Hub is dedicated to providing the latest information on cyber related threats. For more information on potential threats to your security, click one of the links below.</p>
 
   <?php
     for ($i=0; $i < sizeof($topicArray); $i++){

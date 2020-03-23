@@ -6,8 +6,8 @@
  */
 ?>
 
-<div class="text-center mt-5">
-  <h5 class="text-uppercase">Additional Information</h5>
+<div class="text-center mt-2">
+  <h4 class="text-uppercase">Additional Information</h4>
   <a href="privacy-policy.php" class="lead">Privacy Policy</a>
   </br>
 <br>
@@ -17,8 +17,10 @@
         <!-- Grid column -->
         <div class="text-center">
           <!-- Content -->
-          <h5 class="text-uppercase">Author Details</h5>
-          <p class="lead">Aaron Hay - Student No. 1800855</p>
+          <h4 class="text-uppercase">Business Information</h4>
+          <p class="lead"> Author: Aaron Hay </p>
+          <p class="lead"> Student ID: 1800855 </p>
+          <p class="lead"> Address: Abertay University, Bell Street, Dundee, Scotland, DD1 1HG </p>
           <p>
             <!-- <a href="http://www.facebook.com/share.php?u=https://mayar.abertay.ac.uk/~1403163/DPH/View/index.php" class="fab fa-facebook-square fa-3x"></a>
             <a href="https://twitter.com/intent/tweet?url=https://mayar.abertay.ac.uk/~1403163/DPH/View/index.php" class="fab fa-twitter-square fa-3x"></a>

@@ -14,35 +14,14 @@
 <!-- </head> -->
 <title></title>
 <body>
-  <div class="container" style="margin-top: 2rem;">
-    <h1>Website Information</h1>
-    <hr>
-      <p class="lead">Disclaimer - This website is part of a 4th year honours project. All information contained within is for education purposes only.</p>
-
-      <div class="row">
-        <div class="col-sm-6">
-          <img src="images/cookies.jpg" class="img-fluid" alt="stack of cookies">
-          <p>Photo by Whitney Wright on Unsplash</p>
-        </div>
-        <div class="col-sm-6">
-            <h2>Cookie policy</h2>
-            <hr>
-            <h3>What are cookies?</h3>
-            <p>Cookies are small text files stored on your computer that typically hold two pieces of information; a site name and a unique user ID</p>
-            <h3>What do they do?</h3>
-            <p>Some text...</p>
-            <h3>How does this site handle cookies?</h3>
-            <p>Some text...</p>
-            <h3>Some header...</h3>
-            <p>Some text...</p>
-        </div>
-      </div>
-
-    <h2>Contact information</h2>
-      <p>Author: Aaron Hay</p>
-      <p>Student ID: 1800855</p>
-      <p>Address: Abertay University, Bell Street, Dundee, Scotland, DD1 1HG</p>
-      <p>Email: 1800855@abertay.ac.uk</p>
+  <div class="container mt-5">
+    <div class="jumbotron">
+      <h1 class="display-2"><span style="align-items: center; display:flex;"><img src="images/beard.png" alt="man with beard" style="width: 1em; height: 1em; margin-right: 0.25em;"/>About Me</span></h1>
+      <p>My name is Aaron, I'm a 4th year computing student with a passion for web design and development.</p>
+      <p>This website is part of my honours project and reflects all of the skills I have gained over my years at college and university.</p>
+      <p>I have an interest in software that is functional, but also safe and secure for the user and their information.</p>
+    </div>
   </div>
+  <?php include "footer.php";?>
 </body>
 </html>
