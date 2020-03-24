@@ -1,3 +1,8 @@
 <h1>What is Clickbait?</h1>
-<p>Chances are at some point browsing the web you will have come across a website with a tempting story or advertisement, then when you click the link your screen is asualted with various messages and popups. This is clickbait</p>
-<p>Clickbait is a form of false advertisment.</p>
+<p>Chances are at some point browsing the web you will have come across a website with a tempting story or advertisement, then when you click on the link your screen is assaulted with various messages and popups. This term is known as clickbait.</p>
+<p>Clickbait is a form of false advertisement that uses hyperlink text or a thumbnail link that is designed to attract attention and to entice users to follow that link and read, view, or listen to the linked piece of online content. Clickbait has a defining characteristic of being deceptive.</p>
+<h1>Why is it a problem?</h1>
+<p>Standard clickbait articles are designed to misslead the user into visiting their website. It is predominantly seen in video content where a publisher looking to gain more views, and thus more money, will try to think of a hook that will draw in the user. This false advertisement wastes the users time and "gives" the content publisher money, which encourages more of this type of behaviour</p>
+<p>Malicious clickbait articles however, are designed to attract users for the purpose of infecting their devices with various malware programs. The intention of this attack is more sinister as the publisher doesn't want your views, but your personal information for fraud and other criminal activities.</p>
+<h1>How can I protect myself?</h1>
+<p>Most clickbait articles are easy to spot to the trained eye. These articles are typically featured at the bottom of webpages, usually followed with a tag line of "You won't believe how X and Y", or "These X no# of tips will help you with Y". If it is too good to be true, with clickbait it usually is.</p>
