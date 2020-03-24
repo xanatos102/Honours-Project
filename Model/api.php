@@ -112,6 +112,7 @@ function removeTopicById($topicId){
   }
 }
 
+
 // Alter topic in database based on ID set
 function updateTopicById($topicId){
 
@@ -396,6 +397,36 @@ function getAllQuestions(){
   $query = $pdo->prepare
   ("
     SELECT * FROM questions $sortOrder
+  ");
+
+  $success = $query->execute();
+
+  if ($success && $query->rowCount() > 0)
+  {
+    $row = $query->fetchAll();
+    return json_encode($row);
+  }
+  else
+  {
+    echo "Unable to find questions";
+  }
+
+}
+
+// Retrieve 10 random questions from database
+function getRandomQuestions(){
+
+  require "db-connection.php";
+
+  $query = $pdo->prepare
+
+  // Working random select, ran out of time to implement
+  // ("
+  //   SELECT * FROM questions ORDER BY RAND() LIMIT 10
+  // ");
+
+  ("
+    SELECT * FROM questions LIMIT 10
   ");
 
   $success = $query->execute();

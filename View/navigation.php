@@ -28,6 +28,9 @@
             <a class="nav-link" href="terminology.php">Terminology</a>
         </li>
         <li class="nav-item active">
+            <a class="nav-link" href="big-quiz.php">The Big Cybersecurity Quiz</a>
+        </li>
+        <li class="nav-item active">
             <a class="nav-link" href="privacy-policy.php">Legislation</a>
         </li>
         <li class="nav-item active">

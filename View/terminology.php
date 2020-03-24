@@ -32,51 +32,59 @@
           </thead>
           <tr>
             <td class="text-left">Malware</td>
-            <td class="text-left">A piece of malicious software that tries to destroy or steal data.</td>
+            <td class="text-left">Short for "malicious software" - computer programs designed to infiltrate and damage computers without the users consent.</td>
           </tr>
           <tr>
             <td class="text-left">Cookie</td>
-            <td class="text-left">A small text file stored on a users computer. Used to remember user settings and client-side data.</td>
+            <td class="text-left">A small text file stored on a users computer. Used to remember user settings and track preferences.</td>
           </tr>
           <tr>
             <td class="text-left">Session</td>
-            <td class="text-left">A webserver component used for storing server-side data on user.</td>
+            <td class="text-left">A webserver component used for storing information, this is not stored on the users computer.</td>
           </tr>
           <tr>
             <td class="text-left">Client-side</td>
-            <td class="text-left">All the web features visible to the customer.</td>
+            <td class="text-left">All of the web features and technology visible to the customer.</td>
           </tr>
           <tr>
             <td class="text-left">Server-side</td>
-            <td class="text-left">All the web features visible to the server.</td>
+            <td class="text-left">All of the web features and technology visible to the server.</td>
           </tr>
           <tr>
-            <td class="text-left">Some header.</td>
-            <td class="text-left">Some text.</td>
+            <td class="text-left">Trojan Horse</td>
+            <td class="text-left">A virus program that claims to rid your computer of viruses but instead introduces viruses onto your computer.</td>
           </tr>
           <tr>
-            <td class="text-left">Some header.</td>
-            <td class="text-left">Some text.</td>
+            <td class="text-left">Worm</td>
+            <td class="text-left">A virus program that replicates itself in order to spread to other computers and programs.</td>
           </tr>
           <tr>
-            <td class="text-left">Some header.</td>
-            <td class="text-left">Some text.</td>
+            <td class="text-left">Phishing</td>
+            <td class="text-left">A type of internet fraud, usually of email format that tries to gain the users personal information.</td>
           </tr>
           <tr>
-            <td class="text-left">Some header.</td>
-            <td class="text-left">Some text.</td>
+            <td class="text-left">Spam</td>
+            <td class="text-left">Electronic junk mail or junk newsgroup postings. Some spam can contain viruses attached as links or email attachments.</td>
           </tr>
           <tr>
-            <td class="text-left">Some header.</td>
-            <td class="text-left">Some text.</td>
+            <td class="text-left">GDPR</td>
+            <td class="text-left">The General Data Protection Regulation (GDPR) is a legal framework that sets guidelines for the collection and processing of personal information from individuals who live in the European Union (EU).</td>
           </tr>
           <tr>
-            <td class="text-left">Some header.</td>
-            <td class="text-left">Some text.</td>
+            <td class="text-left">Clickbait</td>
+            <td class="text-left">A form of false advertisement that uses hyperlink text or a thumbnail link that is designed to attract attention and to entice users to follow that link and read, view, or listen to the linked piece of online content, with a defining characteristic of being deceptive.</td>
           </tr>
           <tr>
-            <td class="text-left">Some header.</td>
-            <td class="text-left">Some text.</td>
+            <td class="text-left">Special characters</td>
+            <td class="text-left">A special character is a character that is not an alphabetic or numeric character. Punctuation marks and other symbols (@,#,$) are examples of special characters.</td>
+          </tr>
+          <tr>
+            <td class="text-left">URL</td>
+            <td class="text-left">The address of a specific webpage or file on the internet, e.g https://mywebsite.com.</td>
+          </tr>
+          <tr>
+            <td class="text-left">Forms</td>
+            <td class="text-left">An online page that allows for user input. It is an interactive page that mimics a paper document or form.</td>
           </tr>
         </table>
     </div>
