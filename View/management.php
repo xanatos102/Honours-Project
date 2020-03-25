@@ -1,6 +1,5 @@
 <?php
 include 'session.php';
-include 'header.php';
 
 if(!isset($_SESSION['username']))
 {
@@ -8,6 +7,7 @@ if(!isset($_SESSION['username']))
   header("Location: index.php?error=ACCESS DENIED");
 }
 
+include 'header.php';
 ?>
 
 <!DOCTYPE html>
@@ -16,7 +16,7 @@ if(!isset($_SESSION['username']))
 
 <div class="container mt-5">
   <div class="jumbotron">
-    <?php echo '<h1 class="mt-4">Welcome ' . $_SESSION['firstName'] . '</h1>';?>
+    <?php echo '<h1 class="display-3">Welcome ' . $_SESSION['firstName'] . '</h1>';?>
     <p class="lead">This is your admin management page. To add a new question or update an existing one, please select an option from the Quiz Management portion of the page. To add a new topic or update an exisiting one, please select an option from the Topic Management portion of the page.</p>
     <hr class="my-4">
     <p>Please select an option below:</p>

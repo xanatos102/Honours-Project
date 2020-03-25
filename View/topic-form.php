@@ -15,7 +15,7 @@ $lastName = $_SESSION['lastName'];
 
 <?php echo '<div class="container mt-5">
   <div class="jumbotron">
-  <h1 class="text-center mt-4">Add New Topic</h1>
+  <h1 class="display-3">New Topic Form</h1>
 
   <form class="form-group needs-validation" action="../Controller/attempt-create-topic.php" method="POST" enctype="multipart/form-data" novalidate>
     <div class="form-group">

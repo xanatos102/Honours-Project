@@ -15,9 +15,9 @@
 </head>
 <body>
 
-<div class="container mt-4">
+<div class="container mt-5">
 <div class="jumbotron">
-  <h1 class="display-2" style="color:black;"><span style="align-items: center; display:flex;"><img src="images/login.png" alt="lock" style="width: 1em; height: 1em; margin-right: 0.25em;"/>Admin Login</span></h1>
+  <h1 class="display-3" style="color:black;"><span style="align-items: center; display:flex;"><img src="images/login.png" alt="lock" style="width: 1em; height: 1em; margin-right: 0.25em;"/>Admin Login</span></h1>
 
   <?php
   //Error Reporting for the users

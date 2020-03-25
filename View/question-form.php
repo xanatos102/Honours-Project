@@ -21,7 +21,7 @@ if(!isset($_SESSION['username']))
 
 <div class="container mt-5">
   <div class="jumbotron">
-  <h1 class="text-center">Add Question</h1>
+  <h1 class="display-3">New Question Form</h1>
   <form class="form-group needs-validation" action="../Controller/attempt-create-question.php" method="POST" novalidate>
     <div class="form-group">
       <label for="description">Question Description:</label>

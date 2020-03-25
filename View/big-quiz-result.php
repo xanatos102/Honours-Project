@@ -27,7 +27,7 @@ $totalCorrect = 0;
 <body>
   <div class="container mt-5">
     <div class="jumbotron">
-    <h1 class="display-2" style="align-items: center; display:flex;"><img src="images/professor.png" alt="professor" style="width: 1.2em; height: 1.2em; margin-right: 0.25em;"/>Answers</h1>
+    <h1 class="display-3" style="align-items: center; display:flex;"><img src="images/professor.png" alt="professor" style="width: 1.2em; height: 1.2em; margin-right: 0.25em;"/>Answers</h1>
     <hr class="my-4">
 
         <?php

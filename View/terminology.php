@@ -16,7 +16,7 @@
 <body>
   <div class="container mt-5">
     <div class="jumbotron">
-      <h1 class="display-2"><span style="align-items: center; display:flex;"><img src="images/book.png" alt="stack of books" style="width: 1em; height: 1em; margin-right: 0.25em;"/>Terminology</span></h1>
+      <h1 class="display-3"><span style="align-items: center; display:flex;"><img src="images/book.png" alt="stack of books" style="width: 1em; height: 1em; margin-right: 0.25em;"/>Terminology</span></h1>
       <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text" id="basic-addon1"><img src="images/search.png" alt="stack of books" style="width: 1em; height: 1em;" /></span>

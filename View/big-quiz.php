@@ -21,7 +21,7 @@
   <div class="container mt-5">
     <div class="jumbotron">
     <?php echo '<form action="big-quiz-result.php" method="post" id="quiz">'; ?>
-      <h1 class="display-2" style="align-items: center; display:flex;"><img src="images/professor2.png" alt="professor" style="width: 1.2em; height: 1.2em; margin-right: 0.25em;"/>Cybersecurity Quiz</h1>
+      <h1 class="display-3" style="align-items: center; display:flex;"><img src="images/professor2.png" alt="professor" style="width: 1.2em; height: 1.2em; margin-right: 0.25em;"/>The Big Cybersecurity Quiz</h1>
         <hr class="my-4">
           <?php foreach ($questionArray as $question){
 

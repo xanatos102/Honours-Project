@@ -29,13 +29,10 @@ echo "
 <title>Update Question</title>
 </head>
 <body>
-<br>
 
-<div class='container'>
+<div class='container mt-5'>
 <div class='jumbotron'>
-  <div class='page-header'>
-    <h3>Update Questions</h3>
-  </div>";
+<h1 class='display-3'>Update Questions</h1>";
 
 if (isset($_GET['id']) && $_GET['option'] == 'alter')
 {

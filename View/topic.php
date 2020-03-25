@@ -31,7 +31,7 @@
       echo '<div class="jumbotron">
         <div class="row">
           <div class="col-6">
-            <h1 class="display-1">' . $topicArray->title . '</h1>
+            <h1 class="display-3">' . $topicArray->title . '</h1>
 
             <p class="lead"> Author: ' . $topicArray->author . '</p>
             <p class="lead"> Date posted: ' . date('jS F, Y',strtotime($topicArray->date)) . '</p>

@@ -31,10 +31,10 @@
             <a class="nav-link" href="big-quiz.php">The Big Cybersecurity Quiz</a>
         </li>
         <li class="nav-item active">
-            <a class="nav-link" href="privacy-policy.php">Legislation</a>
+            <a class="nav-link" href="legislation.php">Legislation</a>
         </li>
         <li class="nav-item active">
-            <a class="nav-link" href="site-info.php">About</a>
+            <a class="nav-link" href="about.php">About</a>
         </li>
     </ul>
   </div>

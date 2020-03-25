@@ -16,7 +16,7 @@ include 'session.php';
 <body>
   <div class="container mt-5">
     <div class="jumbotron">
-      <h1 class="display-2"><span style="align-items: center; display:flex;"><img src="images/law.png" alt="judges gavel" style="width: 1em; height: 1em; margin-right: 0.25em;"/>Legislation</span></h1>
+      <h1 class="display-3"><span style="align-items: center; display:flex;"><img src="images/law.png" alt="judges gavel" style="width: 1em; height: 1em; margin-right: 0.25em;"/>Legislation</span></h1>
       <p class="lead">Disclaimer - This website is part of a 4th year honours project. All information contained within is for education purposes only.</p>
         <h1 class="display-4">Cookie Policy</h1>
         <h3>What are cookies?</h3>
