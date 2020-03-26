@@ -191,7 +191,7 @@ function updateTopicById($topicId){
 
     if (isset($newImage) || isset($oldImage)){
 
-      if ($imageError === 0){
+      if ($imageError === 0 || isset($oldImage)){
 
         // Checks image size is below stated value
         if ($imageSize < 1000000) {
@@ -220,7 +220,7 @@ function updateTopicById($topicId){
 
           if (isset($newFile) || isset($oldFile)){
             // Checks there are no errors
-            if ($fileError === 0) {
+            if ($fileError === 0 || isset($oldFile)) {
               // Checks image size is below stated value
               if ($fileSize < 3000000) {
 
@@ -249,6 +249,7 @@ function updateTopicById($topicId){
                     $imageLink = $imageDestination;
                     $fileLink = $fileDestination;
                     $date = date("Y/m/d");
+                    $description = (filter_input(INPUT_POST, 'description', FILTER_SANITIZE_STRING));
 
                     // Initialise error variables
                     $error = false;
@@ -282,7 +283,8 @@ function updateTopicById($topicId){
                       author = :author,
                       image_link = :image,
                       file_link = :file,
-                      date = :date
+                      date = :date,
+                      description = :description
                       WHERE id = ".$index."
                       ");
 
@@ -292,7 +294,8 @@ function updateTopicById($topicId){
                         'author' => $author,
                         'image' => $imageLink,
                         'file' => $fileLink,
-                        'date' => $date
+                        'date' => $date,
+                        'description' => $description
                       ]);
 
                       $count = $query->rowCount();
@@ -332,7 +335,7 @@ function updateTopicById($topicId){
 
           } else {
               $invalidError = "There was an error uploading your image!";
-              header('location: ../View/update-topic.php?error='.$invalidError.$imageError.$fileError);
+              header('location: ../View/update-topic.php?error='.$invalidError.$imageError);
               var_dump($imageError);
               var_dump($fileError);
             } // End of image upload error check

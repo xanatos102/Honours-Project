@@ -51,7 +51,7 @@
           <div class="card-body">
             <h2>' . $topicArray[$i]->title . '</h2>
             <hr>
-            <p class="lead">Some text here</p>
+            <p class="lead">' . $topicArray[$i]->description . '</p>
             <a href="topic.php?id=' . $topicArray[$i]->id . '" class="btn btn-success btn-lg">See more</a>
           </div>
         </div>

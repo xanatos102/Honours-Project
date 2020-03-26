@@ -21,22 +21,23 @@
       <!-- <li class="nav-item active">
           <span class="nav-link" href="index.php" style="align-items: center; display:flex;"><img src="images/virus.png" alt="green virus blob" style="width: 1em; height: 1em; margin-right: 0.25em;"/>Cyber Safe Seniors</span>
       </li> -->
-        <li class="nav-item active" >
+        <li class="nav-item active pr-2">
             <a class="nav-link" href="index.php">Home</a>
         </li>
-        <li class="nav-item active">
+        <li class="nav-item active pr-2">
             <a class="nav-link" href="terminology.php">Terminology</a>
         </li>
-        <li class="nav-item active">
+        <li class="nav-item active pr-2">
             <a class="nav-link" href="big-quiz.php">The Big Cybersecurity Quiz</a>
         </li>
-        <li class="nav-item active">
+        <li class="nav-item active pr-2">
             <a class="nav-link" href="legislation.php">Legislation</a>
         </li>
-        <li class="nav-item active">
+        <li class="nav-item active pr-2">
             <a class="nav-link" href="about.php">About</a>
         </li>
     </ul>
   </div>
+
 </div>
 </nav>

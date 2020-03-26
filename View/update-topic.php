@@ -70,6 +70,10 @@ if (isset($_GET['id']) && $_GET['option'] == 'alter')
             <label class="custom-file-label" for="inputGroupFile02">'.$topicArray->file_link.'</label>
           </div>
         </div>
+        <div class="form-group">
+          <label for="description">Description:</label>
+          <input type="text" class="form-control" value="'.$topicArray->description.'" name="description"/>
+        </div>
       <button type="submit" name="update_topic" class="btn btn-success">Submit</button>
     </form>';
 
