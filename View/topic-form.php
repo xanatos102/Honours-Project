@@ -26,6 +26,10 @@ $lastName = $_SESSION['lastName'];
       <label for="author">Author:</label>
       <input type="text" class="form-control" value="'.$firstName . ' ' . $lastName.'" name="author" readonly/>
     </div>
+    <div class="form-group">
+      <label for="description">Description:</label>
+      <input type="text" class="form-control" name="description" placeholder="A short description of the topic."/>
+    </div>
     <div class="input-group mb-3">
       <div class="input-group-prepend">
         <span class="input-group-text" id="inputGroupFileAddon01">Headline Image</span>

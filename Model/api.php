@@ -56,6 +56,8 @@ function getAllTopics(){
     }
     return json_encode($rows);
   }
+
+
 }
 
 // Retrieve topic from database based on ID set
@@ -322,9 +324,7 @@ function updateTopicById($topicId){
 
                 } else {
                     $invalidError = "There was an error uploading your file!";
-                    header('location: ../View/update-topic.php?error='.$invalidError.$imageError.$fileError);
-                    var_dump($fileError);
-                    var_dump($imageError);
+                    header('location: ../View/update-topic.php?error='.$invalidError.$imageError);
                 }
               } // End of file upload error check
 
@@ -336,8 +336,6 @@ function updateTopicById($topicId){
           } else {
               $invalidError = "There was an error uploading your image!";
               header('location: ../View/update-topic.php?error='.$invalidError.$imageError);
-              var_dump($imageError);
-              var_dump($fileError);
             } // End of image upload error check
     }
   }
@@ -836,6 +834,7 @@ function createNewTopic(){
                     $imageLink = $imageDestination;
                     $fileLink = $fileDestination;
                     $date = date("Y/m/d");
+                    $description = (filter_input(INPUT_POST, 'description', FILTER_SANITIZE_STRING));
 
                     // Initialise error variables
                     $error = false;
@@ -863,8 +862,8 @@ function createNewTopic(){
 
                       $query = $pdo->prepare
                       ("
-                      INSERT INTO topic (title, author, image_link, file_link, date)
-                      VALUES (:title, :author, :image, :file, :date)
+                      INSERT INTO topic (title, author, image_link, file_link, date, description)
+                      VALUES (:title, :author, :image, :file, :date, :description)
                       ");
 
                       $success = $query->execute
@@ -873,7 +872,8 @@ function createNewTopic(){
                         'author' => $author,
                         'image' => $imageLink,
                         'file' => $fileLink,
-                        'date' => $date
+                        'date' => $date,
+                        'description' => $description
                       ]);
 
                       $count = $query->rowCount();
