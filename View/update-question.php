@@ -21,6 +21,7 @@ if(!isset($_SESSION['username']))
 else
 {
   include '../Controller/attempt-retrieve-all-questions.php';
+  include '../Controller/attempt-retrieve-all-topics.php';
   include 'header.php';
 
 echo "

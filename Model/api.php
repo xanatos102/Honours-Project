@@ -9,7 +9,7 @@ function getAllTopics(){
 
   require 'db-connection.php';
 
-  $sortOrder = 'ORDER BY id desc';
+  $sortOrder = 'ORDER BY date desc';
 
   if (filter_input(INPUT_POST, "ordering", FILTER_SANITIZE_STRING))
   {
@@ -250,7 +250,7 @@ function updateTopicById($topicId){
                     $author = (filter_input(INPUT_POST, 'author', FILTER_SANITIZE_STRING));
                     $imageLink = $imageDestination;
                     $fileLink = $fileDestination;
-                    $date = date("Y/m/d");
+                    $date = date("Y/m/d H:i:s");
                     $description = (filter_input(INPUT_POST, 'description', FILTER_SANITIZE_STRING));
 
                     // Initialise error variables
@@ -300,16 +300,14 @@ function updateTopicById($topicId){
                         'description' => $description
                       ]);
 
-                      $count = $query->rowCount();
+                      if($success && $query->rowCount() > 0) {
 
-                      if($count > 0){
-
-                        $success = "Insert successful!";
-                        header('location: ../View/update-topic.php?success='.$success);
+                        $validError = "Update successful!";
+                        header('location: ../View/update-topic.php?success='.$validError);
 
                       } else {
 
-                        $invalidError = "Insert failed";
+                        $invalidError = "Update failed";
                         header('location: ../View/update-topic.php?error='.$invalidError);
 
                       }

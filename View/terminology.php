@@ -86,6 +86,10 @@
             <td class="text-left">Forms</td>
             <td class="text-left">An online page that allows for user input. It is an interactive page that mimics a paper document or form.</td>
           </tr>
+          <tr>
+            <td class="text-left">Database</td>
+            <td class="text-left">An organized collection of data, generally stored and accessed electronically from a computer system.</td>
+          </tr>
         </table>
     </div>
   </div>
