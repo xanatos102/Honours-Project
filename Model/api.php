@@ -831,7 +831,7 @@ function createNewTopic(){
                     $author = (filter_input(INPUT_POST, 'author', FILTER_SANITIZE_STRING));
                     $imageLink = $imageDestination;
                     $fileLink = $fileDestination;
-                    $date = date("Y/m/d");
+                    $date = date("Y/m/d H:i:s");
                     $description = (filter_input(INPUT_POST, 'description', FILTER_SANITIZE_STRING));
 
                     // Initialise error variables

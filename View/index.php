@@ -31,7 +31,7 @@
 
   <div class="jumbotron">
     <h1 class="display-3"><span style="align-items: center; display:flex;"><img src="images/house.png" alt="little yellow house" style="width: 1em; height: 1em; margin-right: 0.25em;"/>Welcome</span></h1>
-      <p>The Cyber Awareness Hub is dedicated to providing the latest information on cyber related threats. For more information on potential threats to your security, click one of the card links below:</p>
+      <p>The Cyber Awareness Hub is dedicated to providing the latest information on cyber related threats. For more information on potential threats to your security, click one of the topic links below:</p>
 
   <?php
     for ($i=0; $i < sizeof($topicArray); $i++){

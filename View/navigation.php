@@ -31,11 +31,16 @@
             <a class="nav-link" href="big-quiz.php">The Big Cybersecurity Quiz</a>
         </li>
         <li class="nav-item active pr-2">
-            <a class="nav-link" href="legislation.php">Legislation</a>
+            <a class="nav-link" href="privacy-policy.php">Privacy Policy</a>
         </li>
         <li class="nav-item active pr-2">
             <a class="nav-link" href="about.php">About</a>
         </li>
+        <?php if (isset($_SESSION['username'])){
+          echo '<li class="nav-item active pr-2">
+                  <a class="nav-link" href="management.php">Admin Management</a>
+                </li>';
+        } ?>
     </ul>
   </div>
 

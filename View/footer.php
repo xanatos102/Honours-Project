@@ -8,7 +8,7 @@
 
 <div class="text-center mt-2">
   <h4 class="text-uppercase">Additional Information</h4>
-  <a href="legislation.php" class="lead">Privacy Policy</a>
+  <a href="privacy-policy.php" class="lead">Privacy Policy</a>
   </br>
 <br>
 </div>
