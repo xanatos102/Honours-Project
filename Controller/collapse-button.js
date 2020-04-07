@@ -1,4 +1,8 @@
+/*
+    Description: Action for the register employee page
 
+    Author: Aaron Hay
+*/
 var coll = document.getElementsByClassName("collapsible");
 var i;
 

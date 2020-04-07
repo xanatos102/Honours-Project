@@ -1,6 +1,6 @@
 <?php
 /*
-    Description: Website information page with links to privacy policies and data handling
+    Description: Searchable key terms that users may wish to look up information on
     Author: Aaron Hay
 */
 ?>
@@ -9,10 +9,9 @@
 <!--<head>-->
     <?php
     include 'header.php';
-    //phpinfo();
     ?>
 <!-- </head> -->
-<title></title>
+<title>Terminology</title>
 <body>
   <div class="container mt-5">
     <div class="jumbotron">

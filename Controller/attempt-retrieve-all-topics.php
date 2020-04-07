@@ -1,6 +1,6 @@
 <?php
 /*
-    Description: Action to get all topics from the database.
+    Description: Action to retrieve all topics from the database.
 
     Author: Aaron Hay
  */

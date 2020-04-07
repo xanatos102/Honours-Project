@@ -12,22 +12,16 @@
   </br>
 <br>
 </div>
-<!-- Footer -->
+
 <footer class="relative-bottom page-footer font-small pt-4 text-light bg-dark">
-        <!-- Grid column -->
+
         <div class="text-center">
-          <!-- Content -->
           <h4 class="text-uppercase">Business Information</h4>
           <p class="lead"> Author: Aaron Hay </p>
           <p class="lead"> Student ID: 1800855 </p>
           <p class="lead" style="align-items: center; "><img src="images/abertay.png" alt="professor" style="width: 1.2em; height: 1.2em; margin-right: 0.25em;"/>Abertay University, Bell Street, Dundee, Scotland, DD1 1HG</p>
-          <p>
-            <!-- <a href="http://www.facebook.com/share.php?u=https://mayar.abertay.ac.uk/~1403163/DPH/View/index.php" class="fab fa-facebook-square fa-3x"></a>
-            <a href="https://twitter.com/intent/tweet?url=https://mayar.abertay.ac.uk/~1403163/DPH/View/index.php" class="fab fa-twitter-square fa-3x"></a>
-            <a href="http://instagram.com/share?ref_scr=https://mayar.abertay.ac.uk/~1403163/DPH/View/index.php" class="fab fa-instagram fa-3x"></a> -->
-          </p>
         </div>
-        <!-- Grid column -->
+
 
     <!-- Copyright -->
 

@@ -114,7 +114,6 @@ function removeTopicById($topicId){
   }
 }
 
-
 // Alter topic in database based on ID set
 function updateTopicById($topicId){
 
@@ -425,7 +424,7 @@ function getRandomQuestions(){
   // ");
 
   ("
-    SELECT * FROM questions LIMIT 10
+    SELECT * FROM questions
   ");
 
   $success = $query->execute();

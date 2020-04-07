@@ -1,6 +1,6 @@
 <?php
 /*
-    Description: User interface used to manage and alter movies listed on the site.
+    Description: User interface used to manage and alter topics listed on the site.
 
     Author: Aaron Hay
 */
@@ -138,7 +138,7 @@ if (isset($_GET['id']) && $_GET['option'] == 'alter')
 
       for ($i=0 ; $i < sizeof($topicArray) ; $i++)
       {
-      //echo "<div class='border border-success'>";
+
       echo "<tr>";
         echo "<td>".$topicArray[$i]->id."</td>";
         echo "<td class='text-left'>".$topicArray[$i]->title."</td>";

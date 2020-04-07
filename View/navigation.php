@@ -18,9 +18,6 @@
 
 <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <!-- <li class="nav-item active">
-          <span class="nav-link" href="index.php" style="align-items: center; display:flex;"><img src="images/virus.png" alt="green virus blob" style="width: 1em; height: 1em; margin-right: 0.25em;"/>Cyber Safe Seniors</span>
-      </li> -->
         <li class="nav-item active pr-2">
             <a class="nav-link" href="index.php">Home</a>
         </li>
@@ -36,7 +33,7 @@
         <li class="nav-item active pr-2">
             <a class="nav-link" href="about.php">About</a>
         </li>
-        <?php if (isset($_SESSION['username'])){
+        <?php if (isset($_SESSION['username'])){ // Checks that a valid username is set
           echo '<li class="nav-item active pr-2">
                   <a class="nav-link" href="management.php">Admin Management</a>
                 </li>';

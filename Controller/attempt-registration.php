@@ -1,6 +1,6 @@
 <?php
 /*
-    Description: Action for the register employee page
+    Description: Action for the registering admins
 
     Author: Aaron Hay
 */

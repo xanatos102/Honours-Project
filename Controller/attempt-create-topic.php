@@ -1,6 +1,6 @@
 <?php
 /*
-    Description:
+    Description: Action for creating a new topic
 
     Author: Aaron Hay
  */

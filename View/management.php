@@ -1,4 +1,9 @@
 <?php
+/*
+    Description: Admin page for managing site content.
+
+    Author: Aaron Hay
+ */
 include 'session.php';
 
 if(!isset($_SESSION['username']))
@@ -8,8 +13,9 @@ if(!isset($_SESSION['username']))
 }
 
 include 'header.php';
-?>
 
+?>
+<title>Content Management</title>
 <!DOCTYPE html>
 <html>
 <body>

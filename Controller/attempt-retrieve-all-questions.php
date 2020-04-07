@@ -1,6 +1,6 @@
 <?php
 /*
-    Description: Control file to retrieve quiz data from database.
+    Description: Action to retrieve all questions from database
     Author: Aaron Hay
 */
 

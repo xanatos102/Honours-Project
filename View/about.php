@@ -1,18 +1,18 @@
 <?php
 /*
-    Description: Website information page with links to privacy policies and data handling
+    Description: Extra information on the developer and what the website is for.
     Author: Aaron Hay
 */
 ?>
 
+<!DOCTYPE html>
 <html>
 <!--<head>-->
     <?php
     include 'header.php';
-    //phpinfo();
     ?>
 <!-- </head> -->
-<title></title>
+<title>About</title>
 <body>
   <div class="container mt-5">
     <div class="jumbotron">

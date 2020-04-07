@@ -21,10 +21,9 @@
 <!--<head>-->
     <?php
     include 'header.php';
-    //phpinfo()
     ?>
 <!-- </head> -->
-<title>Honours Project - Home</title>
+<title>Home</title>
 <body>
 
 <div class="container mt-5">
@@ -34,14 +33,8 @@
       <p>The Cyber Awareness Hub is dedicated to providing the latest information on cyber related threats. For more information on potential threats to your security, click one of the topic links below:</p>
 
   <?php
+    // Loop through topics
     for ($i=0; $i < sizeof($topicArray); $i++){
-
-      // if (($counter % $cols) == 1){
-      //
-      //   echo '<div class="row">'; // Open row
-      // }
-
-      // border-secondary // give card border
 
       echo '<a href="topic.php?id=' . $topicArray[$i]->id . '" class="custom-card">
       <div class="card mb-3 mt-4">
@@ -65,37 +58,6 @@
       </div>
       </a>';
     }
-
-      // echo'<div class="col-sm-4 mt-4">
-      //   <div class="card h-100">
-      //     <a href="topic.php?id=' . $topicArray[$i]->id . '">
-      //     <img src="' . $topicArray[$i]->image_link . '" class="card-img-top"  alt="Image to represent ' . $topicArray[$i]->title . '" style="height:210px">
-      //     </a>
-      //     <div class="card-body">
-      //       <h2>' . $topicArray[$i]->title . '</h2>
-      //       <hr>
-      //       <p class="lead">' . $topicArray[$i]->description . '</p>
-      //       <a href="topic.php?id=' . $topicArray[$i]->id . '" class="btn btn-success btn-lg">See more</a>
-      //     </div>
-      //   </div>
-      // </div>';
-
-    //   if (($counter % $cols) == 0){
-    //
-    //     echo '</div>';
-    //   }
-    //   $counter++;
-    // }
-    //
-    // if ($nbsp > 0){
-    //
-    //   for ($i = 0; $i < $nbsp; $i++){
-    //
-    //     echo '<div class="col-sm-4>&nbsp;</div>"';
-    //   }
-    // }
-    //
-    // echo '</div></div></div><br>';
    ?>
 
 </div>

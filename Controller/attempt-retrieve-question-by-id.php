@@ -1,6 +1,6 @@
 <?php
 /*
-    Description:
+    Description: Action to retrieve questions from data base by ID
     Author: Aaron Hay
  */
 include_once '../Model/api.php';

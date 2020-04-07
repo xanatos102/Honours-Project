@@ -12,18 +12,20 @@
     include 'header.php';
     include '../Controller/attempt-retrieve-random-questions.php';
 
+    // Initialise question counter
     $questionCounter = 1;
 
     ?>
 </head>
-<title>Malware Quiz</title>
+<title>The Big Cybersecurity Quiz - Results</title>
 <body>
   <div class="container mt-5">
     <div class="jumbotron">
     <?php echo '<form action="big-quiz-result.php" method="post" id="quiz">'; ?>
       <h1 class="display-3" style="align-items: center; display:flex;"><img src="images/professor2.png" alt="professor" style="width: 1.2em; height: 1.2em; margin-right: 0.25em;"/>The Big Cybersecurity Quiz</h1>
         <hr class="my-4">
-          <?php foreach ($questionArray as $question){
+
+          <?php foreach ($questionArray as $question){ // Loop through questions in the question array
 
           echo '<h1>Question ' . $questionCounter  . '.</h1>
                 <h2>'. $question->description . '</h2>
@@ -40,7 +42,7 @@
                 <input type="radio" name="answer[' . $question->id . ']" value="' . $question->answer_four . '" required />
                 <label for="question-1-answers-D">' . $question->answer_four . '</label>
                 <hr class="my-4">';
-                $questionCounter++;
+                $questionCounter++; // +1 to question counter
           } ?>
 
       </br>

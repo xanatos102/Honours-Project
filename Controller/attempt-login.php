@@ -1,6 +1,6 @@
 <?php
 /*
-    Description: Action for the customer login page.
+    Description: Action for logging in admins.
 
     Author: Aaron Hay
  */

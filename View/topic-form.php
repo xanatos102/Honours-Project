@@ -1,4 +1,9 @@
 <?php
+/*
+    Description: Form that allows admins to add new topics to website
+
+    Author: Aaron Hay
+ */
 include 'session.php';
 $firstName = $_SESSION['firstName'];
 $lastName = $_SESSION['lastName'];

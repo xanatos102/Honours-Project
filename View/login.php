@@ -1,10 +1,11 @@
 <?php
 /*
-    Description: Admin login
+    Description: Admin login page
 
     Author: Aaron Hay
  */
 ?>
+<!DOCTYPE html>
 <html>
 <head>
     <?php

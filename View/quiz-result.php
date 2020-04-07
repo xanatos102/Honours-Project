@@ -23,7 +23,7 @@ $totalCorrect = 0;
     include '../Controller/attempt-retrieve-questions.php';
     ?>
 </head>
-<title>Quiz</title>
+<title>Quiz Results</title>
 <body>
   <div class="container" style="margin-top: 2em;">
     <div class="jumbotron">

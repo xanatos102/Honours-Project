@@ -1,6 +1,6 @@
 <?php
 /*
-    Description:
+    Description: Action to update topics in database
     Author: Aaron Hay
  */
 include_once '../Model/api.php';

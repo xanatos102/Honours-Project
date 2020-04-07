@@ -1,6 +1,6 @@
 <?php
 /*
-    Description:
+    Description: Topic information
     Author: Aaron Hay
 */
 ?>
@@ -15,16 +15,16 @@
 <!--<head>-->
     <?php
     include 'header.php';
-    //phpinfo()
     ?>
 <!-- </head> -->
-<title>Honours Project - Home</title>
+<title>Topic</title>
 <body>
 
   <div class="container mt-5">
 
     <?php
 
+    // check if file exists for topic
     if (!file_exists($topicArray->file_link)){
       $fileError = "<p>Content file not found.</p>";
     }

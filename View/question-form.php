@@ -1,4 +1,9 @@
 <?php
+/*
+    Description: Form that allows admins to add new questions to quizes
+
+    Author: Aaron Hay
+ */
 include 'session.php';
 
 if(!isset($_SESSION['username']))

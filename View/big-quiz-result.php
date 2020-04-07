@@ -1,6 +1,6 @@
 <?php
 /*
-    Description: Results page for questions annswered by the user
+    Description: Results page for questions answered by the user
     Author: Aaron Hay
 */
 ?>
@@ -23,7 +23,7 @@ $totalCorrect = 0;
     include '../Controller/attempt-retrieve-random-questions.php';
     ?>
 </head>
-<title>Quiz</title>
+<title>The Big Cybersecurity Quiz</title>
 <body>
   <div class="container mt-5">
     <div class="jumbotron">
@@ -36,18 +36,23 @@ $totalCorrect = 0;
           $nextAnswer = current($answer);
         }
 
+        // Loop through questions in the $questionArray
         foreach ($questionArray as $question) {
 
+          // Check if answer is correct
           if ($question->correct_answer == $nextAnswer ) {
 
+            // If yes +1 to correct answer counter and display message
             $isCorrect = '<h3 style="color:green; text-align:center;">Correct!</h3>';
             // Add 1 to correct answers counter
             $totalCorrect++;
 
+            // If no display message
           } else {
             $isCorrect = '<h3 style="color:red; text-align:center;">Incorrect.</h3>';
           }
 
+          // Question and chosen answer/potential answers
           echo '<div>
           <h2>Question ' . $questionCounter  . '.</h2>
           <h3>'. $question->description . '</h3>

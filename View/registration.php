@@ -3,7 +3,6 @@
     Description: Form used to register new admin credentials.
 
     Author: Aaron Hay
-    Date: 26/01/2020
 
 */
 include 'session.php';

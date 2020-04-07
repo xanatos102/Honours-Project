@@ -1,6 +1,6 @@
 <?php
 /*
-    Description: Action for the register employee page
+    Description: Action for creating a new question
 
     Author: Aaron Hay
 */
@@ -20,6 +20,6 @@ else
 				}
 
   createNewQuestion();
-  
+
 }
 ?>
