@@ -87,7 +87,7 @@
           </tr>
           <tr>
             <td class="text-left">Database</td>
-            <td class="text-left">An organized collection of data, generally stored and accessed electronically from a computer system.</td>
+            <td class="text-left">An organised collection of data, generally stored and accessed electronically from a computer system.</td>
           </tr>
         </table>
     </div>
